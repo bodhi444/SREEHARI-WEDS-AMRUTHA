@@ -385,3 +385,63 @@ if (typeof lucide !== 'undefined') lucide.createIcons();
     });
   });
 })();
+
+/* ════════════════════════════════════════════
+   WISHES LOGIC
+════════════════════════════════════════════ */
+(function initWishes() {
+  const form = document.getElementById('wishesForm');
+  const wishesList = document.getElementById('wishesList');
+  if (!form || !wishesList) return;
+
+  const STORAGE_KEY = 'wedding_wishes';
+  const dummyWishes = [
+    { name: 'Arjun & Family', text: 'Wishing you both a lifetime of love and happiness!', date: 'Sep 2, 2026' },
+    { name: 'Neha', text: 'So happy for you two. Have a wonderful wedding!', date: 'Sep 3, 2026' }
+  ];
+
+  function loadWishes() {
+    let saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) {
+      saved = JSON.stringify(dummyWishes);
+      localStorage.setItem(STORAGE_KEY, saved);
+    }
+    return JSON.parse(saved);
+  }
+
+  function saveWish(name, text) {
+    const wishes = loadWishes();
+    const dateStr = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    wishes.unshift({ name, text, date: dateStr });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(wishes));
+    renderWishes();
+  }
+
+  function renderWishes() {
+    const wishes = loadWishes();
+    wishesList.innerHTML = wishes.map(wish => `
+      <div class="wish-item">
+        <div class="wish-item-header">
+          <span class="wish-name">${wish.name}</span>
+          <span class="wish-date">${wish.date}</span>
+        </div>
+        <p class="wish-text">${wish.text}</p>
+      </div>
+    `).join('');
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nameInput = document.getElementById('wishName');
+    const messageInput = document.getElementById('wishMessage');
+    
+    if (nameInput.value.trim() && messageInput.value.trim()) {
+      saveWish(nameInput.value.trim(), messageInput.value.trim());
+      nameInput.value = '';
+      messageInput.value = '';
+    }
+  });
+
+  // Initial render
+  renderWishes();
+})();
