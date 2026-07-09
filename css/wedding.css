@@ -47,13 +47,13 @@
 
 /* ── Design Tokens ───────────────────────── */
 :root {
-  --primary:      #780269;
-  --primary-dark: #5a0050;
-  --pink-light:   #ed94d5;
-  --pink-dark:    #fc72d7;
+  --primary:      #c1121f;
+  --primary-dark: #780000;
+  --pink-light:   #fdf0d5;
+  --pink-dark:    #f77f00;
   --text-dark:    #171717;
   --text-body:    #516271;
-  --card-bg:      #f6f6f6;
+  --card-bg:      #fff9f2;
   --border:       #e3e3e3;
 
   --font-serif:    'AppleGaramond', 'Apple Garamond', 'Cormorant Garamond', Garamond, Georgia, serif;
@@ -76,7 +76,7 @@ html, body {
   overflow: hidden;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  background: #e8b4df;
+  background: #fdf0d5;
 }
 a { text-decoration: none; color: inherit; }
 button { border: none; background: none; cursor: pointer; font-family: inherit; }
@@ -116,7 +116,7 @@ img { display: block; }
   inset: 0;
   z-index: 0;
   /* Gradient fallback if image fails to load */
-  background: linear-gradient(160deg, #f5d5ef 0%, #e080cc 30%, #b840a8 60%, #780269 100%);
+  background: linear-gradient(160deg, #fdf0d5 0%, #f77f00 30%, #d62828 60%, #c1121f 100%);
 }
 .splash-bg-img {
   width: 100%;
@@ -128,9 +128,9 @@ img { display: block; }
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-    rgba(220,130,210,0.06) 0%,
-    rgba(220,130,210,0.04) 60%,
-    rgba(200,100,190,0.12) 100%);
+    rgba(247,127,0,0.06) 0%,
+    rgba(247,127,0,0.04) 60%,
+    rgba(193,18,31,0.12) 100%);
 }
 
 /* ── Z-layer for all content ─────────────── */
@@ -266,7 +266,7 @@ img { display: block; }
   position: absolute;
   width: 80px;
   height: 28px;
-  background: #f900a3;
+  background: #f77f00;
   border-radius: 3px;
   transform: rotate(-21deg);
 }
@@ -332,7 +332,7 @@ img { display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 18px rgba(200,60,160,0.35);
+  box-shadow: 0 6px 18px rgba(247,127,0,0.35);
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
@@ -371,7 +371,7 @@ img { display: block; }
   text-align: center;
   padding: 0 24px;
 }
-/* Figma: Poppins Regular 13.366px, color #780269 */
+/* Figma: Poppins Regular 13.366px */
 .event-date,
 .event-venue {
   font-family: var(--font-sans);
@@ -410,8 +410,8 @@ img { display: block; }
   inset: 0;
   border-radius: var(--radius-pill);
   background: linear-gradient(90deg,
-    rgba(120,2,105,0.35),
-    rgba(252,114,215,0.25));
+    rgba(193,18,31,0.35),
+    rgba(247,127,0,0.25));
   width: 0;
 }
 .swipe-thumb {
@@ -451,7 +451,7 @@ img { display: block; }
   transition: opacity 0.12s;
 }
 /* Done state */
-.swipe-track.done { background: rgba(120,2,105,0.2); }
+.swipe-track.done { background: rgba(193,18,31,0.2); }
 .swipe-track.done .swipe-thumb { background: var(--primary); }
 .swipe-track.done .swipe-thumb svg { stroke: #fff; }
 .swipe-track.done .swipe-label { color: #fff; padding-left: 0; font-weight: 500; }
@@ -471,8 +471,8 @@ img { display: block; }
   width: 9px;
   height: 13px;
   background: radial-gradient(ellipse,
-    rgba(255,210,235,0.75),
-    rgba(240,140,200,0.35));
+    rgba(253,240,213,0.75),
+    rgba(247,127,0,0.35));
   border-radius: 50% 0 50% 0;
   animation: petalFall var(--dur) linear var(--delay) infinite;
 }
@@ -531,7 +531,7 @@ img { display: block; }
   overflow: hidden;
   flex-shrink: 0;
   /* Gradient fallback if image fails to load */
-  background: linear-gradient(160deg, #d490c4 0%, #a03898 50%, #780269 100%);
+  background: linear-gradient(160deg, #f77f00 0%, #d62828 50%, #c1121f 100%);
 }
 .details-hero-bg {
   position: absolute;
@@ -546,8 +546,8 @@ img { display: block; }
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-    rgba(180,80,160,0.05) 0%,
-    rgba(180,80,160,0.08) 100%);
+    rgba(247,127,0,0.05) 0%,
+    rgba(193,18,31,0.08) 100%);
 }
 
 /* Music pill on details page */
@@ -596,7 +596,7 @@ img { display: block; }
   position: absolute;
   width: 68px;
   height: 22px;
-  background: #f900a3;
+  background: #f77f00;
   border-radius: 3px;
   transform: rotate(-21deg);
 }
@@ -669,10 +669,10 @@ img { display: block; }
   gap: 5px;
   padding: 22px 20px 20px;
   margin: 10px 0 16px;
-  background: linear-gradient(160deg, rgba(120,2,105,0.04) 0%, #fff 55%);
-  border: 0.75px solid rgba(162,95,153,0.22);
+  background: linear-gradient(160deg, rgba(193,18,31,0.04) 0%, #fff 55%);
+  border: 0.75px solid rgba(247,127,0,0.22);
   border-radius: 18px;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.08), 0 2px 8px rgba(120,2,105,0.06);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08), 0 2px 8px rgba(193,18,31,0.06);
   position: relative;
   z-index: 5;
 }
@@ -686,7 +686,7 @@ img { display: block; }
 .sdt-line {
   flex: 1;
   height: 1px;
-  background: rgba(120,2,105,0.22);
+  background: rgba(193,18,31,0.22);
 }
 .sdt-sparkle {
   color: var(--primary);
@@ -760,7 +760,7 @@ img { display: block; }
 }
 .venue-pin-circle {
   width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(120,2,105,0.09);
+  background: rgba(193,18,31,0.09);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   color: var(--primary);
@@ -794,7 +794,7 @@ img { display: block; }
   width: 100%;
   padding: 13px;
   border-radius: var(--radius-pill);
-  background: linear-gradient(135deg, var(--primary) 0%, #5a0050 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: #fff;
   font-family: var(--font-sans);
   font-size: 14px;

@@ -2,12 +2,12 @@
 
 /* ══════════════════════════════════════════
    WEDDING WEBSITE — JAVASCRIPT
-   Mohammed Abdul Razak & Henna Shireen
-   Nikah: Wednesday, 20 May 2026, 5:30 PM IST
+   Sreehari & Amrutha
+   Vivaha: Saturday, 05 September 2026
 ══════════════════════════════════════════ */
 
 // ── Wedding date target ────────────────────
-const WEDDING_DATE = new Date('2026-05-20T17:30:00+05:30');
+const WEDDING_DATE = new Date('2026-09-05T10:30:00+05:30');
 
 // ── DOM refs ───────────────────────────────
 const splash        = document.getElementById('splash');
@@ -19,10 +19,14 @@ const swipeFill     = document.getElementById('swipeFill');
 const bgMusic       = document.getElementById('bgMusic');
 const musicPill     = document.getElementById('musicPill');
 const musicPillDet  = document.getElementById('musicPillDetails');
+const MUSIC_TRACKS  = [
+  'audio/ullam-paadum-wedding-song.mp3'
+];
 
 // ── State ──────────────────────────────────
 let musicStarted = false;  // has audio.play() ever succeeded?
 let musicMuted   = false;  // is it currently muted?
+let musicTrackIndex = 0;
 
 /* ════════════════════════════════════════════
    AUDIO UNLOCK — iOS Safari requires a play()
@@ -249,6 +253,15 @@ function fadeVolume(from, to, durationMs) {
   }, interval);
 }
 
+function playNextTrack() {
+  if (!bgMusic || MUSIC_TRACKS.length < 2) return;
+
+  musicTrackIndex = (musicTrackIndex + 1) % MUSIC_TRACKS.length;
+  bgMusic.src = MUSIC_TRACKS[musicTrackIndex];
+  bgMusic.load();
+  bgMusic.play().catch(() => {});
+}
+
 function toggleMusic() {
   if (!bgMusic) return;
 
@@ -280,20 +293,21 @@ function updateMusicUI() {
       p.setAttribute('aria-label', 'Mute music');
     } else {
       p.classList.remove('playing');
-      p.setAttribute('aria-label', 'Play Nikkah Nasheed');
+      p.setAttribute('aria-label', 'Play Mangal Vadya');
     }
   });
 }
 
 if (musicPill)    musicPill.addEventListener('click', toggleMusic);
 if (musicPillDet) musicPillDet.addEventListener('click', toggleMusic);
+if (bgMusic)      bgMusic.addEventListener('ended', playNextTrack);
 
 /* ════════════════════════════════════════════
    DOWNLOAD CARD BUTTON
 ════════════════════════════════════════════ */
 async function downloadWeddingCard(btn) {
   const CARD_URL = 'assets/wedding-card.png';
-  const FILENAME = 'Mohammed-Henna-WeddingCard.png';
+  const FILENAME = 'Sreehari-Amrutha-WeddingCard.png';
 
   const origText = btn.textContent;
   btn.textContent = 'Downloading…';
@@ -309,7 +323,7 @@ async function downloadWeddingCard(btn) {
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       await navigator.share({
         files: [file],
-        title: 'Mohammed & Henna — Wedding Card',
+        title: 'Sreehari & Amrutha — Wedding Card',
         text:  'You\'re invited! ✨'
       });
     } else {
