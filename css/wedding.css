@@ -252,7 +252,7 @@ img { display: block; }
 /* ── "weds" badge ────────────────────────── */
 /*  Figma: y≈381, Comforter on pink bar        */
 .splash-weds-wrap {
-  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 342px); /* Figma y=381 + 15 */
+  top: calc(max(env(safe-area-inset-top, 0px), 54px) + 326px); /* Adjusted for 1-line groom */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -332,7 +332,7 @@ img { display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 18px rgba(247,127,0,0.35);
+  box-shadow: 0 6px 18px rgba(193,18,31,0.45);
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
@@ -583,7 +583,7 @@ img { display: block; }
 .dh-weds-wrap {
   position: absolute;
   left: 50%;
-  top: 153px;
+  top: 130px;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
