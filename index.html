@@ -317,7 +317,22 @@
         </div>
       </div>
 
-      <!-- ── Wishes Section ── -->
+
+      <!-- ── Downloads ── -->
+      <div class="card-section stagger-child">
+        <h2 class="section-heading">Downloads</h2>
+        <div class="download-grid">
+          <div class="info-card download-card">
+            <div class="download-preview">
+              <img src="assets/wedding-card.png" alt="Wedding card preview" class="download-thumb" />
+            </div>
+            <p class="download-label">Wedding card</p>
+            <button class="download-btn">Download card</button>
+          </div>
+
+        </div>
+      </div>
+      <!-- ── Wishes Section ── -->
       <div class="card-section stagger-child">
         <h2 class="section-heading">Leave a Wish</h2>
         <div class="info-card wishes-card">
@@ -336,21 +351,6 @@
         </div>
       </div>
 
-      <!-- ── Downloads ── -->
-      <div class="card-section stagger-child">
-        <h2 class="section-heading">Downloads</h2>
-        <div class="download-grid">
-          <div class="info-card download-card">
-            <div class="download-preview">
-              <img src="assets/wedding-card.png" alt="Wedding card preview" class="download-thumb" />
-            </div>
-            <p class="download-label">Wedding card</p>
-            <button class="download-btn">Download card</button>
-          </div>
-
-        </div>
-      </div>
-
       <footer class="wedding-footer">
         <p>With love &amp; prayers</p>
         <p class="footer-names">Sreehari &amp; Amrutha</p>
@@ -366,5 +366,92 @@
 
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="js/wedding.js"></script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, push, onValue, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyARQyXh8SuC2Eem2JtXGtQ0vgph6_igePY",
+      authDomain: "sreehari-wedding.firebaseapp.com",
+      projectId: "sreehari-wedding",
+      storageBucket: "sreehari-wedding.firebasestorage.app",
+      messagingSenderId: "850359961428",
+      appId: "1:850359961428:web:31999003ba767dc83faac1",
+      measurementId: "G-GXNTBE8019"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+
+    const form = document.getElementById('wishesForm');
+    const wishesList = document.getElementById('wishesList');
+    const wishesRef = ref(db, 'wishes');
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const nameInput = document.getElementById('wishName');
+        const messageInput = document.getElementById('wishMessage');
+        const btn = form.querySelector('.submit-wish-btn');
+        
+        const name = nameInput.value.trim();
+        const text = messageInput.value.trim();
+        
+        if (name && text) {
+          btn.disabled = true;
+          btn.innerText = 'Sending...';
+          
+          try {
+            await push(wishesRef, {
+              name,
+              text,
+              timestamp: serverTimestamp()
+            });
+            nameInput.value = '';
+            messageInput.value = '';
+          } catch(err) {
+            console.error("Error saving wish: ", err);
+            alert("Could not send wish. Please try again.");
+          } finally {
+            btn.disabled = false;
+            btn.innerText = 'Send Wish';
+          }
+        }
+      });
+    }
+
+    if (wishesList) {
+      onValue(wishesRef, (snapshot) => {
+        wishesList.innerHTML = '';
+        const wishes = [];
+        snapshot.forEach((childSnapshot) => {
+          wishes.push(childSnapshot.val());
+        });
+        
+        // Reverse so newest is on top
+        wishes.reverse();
+        
+        if (wishes.length === 0) {
+          wishesList.innerHTML = '<p style="color:rgba(255,255,255,0.5); font-family:var(--font-dm); font-size:14px; text-align:center; padding:10px;">Be the first to leave a wish!</p>';
+        } else {
+          wishes.forEach(wish => {
+            const dateStr = wish.timestamp ? new Date(wish.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Just now';
+            wishesList.innerHTML += `
+              <div class="wish-item">
+                <div class="wish-item-header">
+                  <span class="wish-name">${wish.name}</span>
+                  <span class="wish-date">${dateStr}</span>
+                </div>
+                <p class="wish-text">${wish.text}</p>
+              </div>
+            `;
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>
