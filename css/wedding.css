@@ -266,7 +266,7 @@ img { display: block; }
   position: absolute;
   width: 80px;
   height: 28px;
-  background: #f77f00;
+  background: #c1121f;
   border-radius: 3px;
   transform: rotate(-21deg);
 }
@@ -328,7 +328,7 @@ img { display: block; }
   height: 82px;
   border-radius: 6px;
   border: 1px solid rgba(255,255,255,0.8);
-  background: linear-gradient(180deg, var(--pink-light) 0%, var(--pink-dark) 100%);
+  background: #c1121f;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -596,7 +596,7 @@ img { display: block; }
   position: absolute;
   width: 68px;
   height: 22px;
-  background: #f77f00;
+  background: #c1121f;
   border-radius: 3px;
   transform: rotate(-21deg);
 }
