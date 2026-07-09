@@ -337,8 +337,8 @@
         <h2 class="section-heading">Leave a Wish</h2>
         <div class="info-card wishes-card">
           <form id="wishesForm" class="wishes-form">
-            <input type="text" id="wishName" placeholder="Your Name" required />
-            <input type="text" id="wishMessage" placeholder="Your Wedding Wish" required />
+            <input type="text" id="wishName" name="wishName" placeholder="Wisher name" autocomplete="name" required />
+            <textarea id="wishMessage" name="wishMessage" rows="4" placeholder="Write your wish here" required></textarea>
             <button type="submit" class="submit-wish-btn">Send Wish</button>
           </form>
           
@@ -375,6 +375,7 @@
     const firebaseConfig = {
       apiKey: "AIzaSyARQyXh8SuC2Eem2JtXGtQ0vgph6_igePY",
       authDomain: "sreehari-wedding.firebaseapp.com",
+      databaseURL: "https://sreehari-wedding-default-rtdb.firebaseio.com",
       projectId: "sreehari-wedding",
       storageBucket: "sreehari-wedding.firebasestorage.app",
       messagingSenderId: "850359961428",
@@ -435,21 +436,36 @@
         wishes.reverse();
         
         if (wishes.length === 0) {
-          wishesList.innerHTML = '<p style="color:rgba(255,255,255,0.5); font-family:var(--font-dm); font-size:14px; text-align:center; padding:10px;">Be the first to leave a wish!</p>';
+          wishesList.innerHTML = '<p class="empty-wishes">Be the first to leave a wish!</p>';
         } else {
           wishes.forEach(wish => {
             const dateStr = wish.timestamp ? new Date(wish.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Just now';
-            wishesList.innerHTML += `
-              <div class="wish-item">
-                <div class="wish-item-header">
-                  <span class="wish-name">${wish.name}</span>
-                  <span class="wish-date">${dateStr}</span>
-                </div>
-                <p class="wish-text">${wish.text}</p>
-              </div>
-            `;
+            const item = document.createElement('div');
+            item.className = 'wish-item';
+
+            const header = document.createElement('div');
+            header.className = 'wish-item-header';
+
+            const name = document.createElement('span');
+            name.className = 'wish-name';
+            name.textContent = wish.name || 'Guest';
+
+            const date = document.createElement('span');
+            date.className = 'wish-date';
+            date.textContent = dateStr;
+
+            const text = document.createElement('p');
+            text.className = 'wish-text';
+            text.textContent = wish.text || '';
+
+            header.append(name, date);
+            item.append(header, text);
+            wishesList.appendChild(item);
           });
         }
+      }, (error) => {
+        console.error("Error loading wishes: ", error);
+        wishesList.innerHTML = '<p class="empty-wishes">Wishes could not be loaded right now.</p>';
       });
     }
   </script>

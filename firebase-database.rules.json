@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "wishes": {
+      ".read": true,
+      ".write": true,
+      "$wishId": {
+        ".validate": "newData.hasChildren(['name', 'text', 'timestamp']) && newData.child('name').isString() && newData.child('name').val().length > 0 && newData.child('name').val().length <= 80 && newData.child('text').isString() && newData.child('text').val().length > 0 && newData.child('text').val().length <= 500 && newData.child('timestamp').isNumber()"
+      }
+    }
+  }
+}
