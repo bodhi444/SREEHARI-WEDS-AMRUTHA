@@ -322,7 +322,7 @@ sup { font-size: 0.6em; vertical-align: super; }
   top:calc(max(env(safe-area-inset-top,0px),54px) + 600px);
   left:0; right:0; text-align:center; padding:0 24px;
 }
-.event-date { font-family:var(--font-script); font-size:16px; font-style:italic; color:var(--gold); line-height:1.4; }
+.event-date { font-family:var(--font-script); font-size:16px; font-style:italic; color:#fff; line-height:1.4; text-shadow: 0 1px 6px rgba(0,0,0,0.5); }
 .event-venue { font-size:12px; font-weight:400; color:rgba(255,255,255,0.82); line-height:1.4; letter-spacing:.02em; }
 
 /* Swipe CTA */
@@ -685,8 +685,8 @@ sup { font-size: 0.6em; vertical-align: super; }
 .venue-sub-text  { font-size:12px; color:var(--text-muted); }
 .venue-sep       { height:1px; background:rgba(200,155,60,0.25); margin:14px 0; }
 .venue-time-row  {
-  display:flex; align-items:center; gap:7px;
-  font-size:12.5px; color:var(--text-dark); margin-bottom:16px;
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  font-size:12.5px; color:var(--text-dark); margin-bottom:16px; text-align:center;
 }
 .venue-time-row i { color:var(--text-muted); flex-shrink:0; }
 .directions-btn {
