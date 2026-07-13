@@ -274,7 +274,20 @@ function generateICS() {
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
     'X-WR-CALNAME:Sreehari & Amrutha Wedding',
-
+    // Ceremony
+    'BEGIN:VEVENT',
+    'DTSTART:20260905T050000Z',
+    'DTEND:20260905T060000Z',
+    'SUMMARY:Sreehari & Amrutha — Wedding Ceremony',
+    'LOCATION:Community Hall\\, Sreekandapuram',
+    'DESCRIPTION:Muhurtham: 10:30 AM – 11:30 AM\\nSaturday\\, 5th September 2026',
+    'STATUS:CONFIRMED',
+    'BEGIN:VALARM',
+    'TRIGGER:-PT1H',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Wedding Ceremony in 1 hour!',
+    'END:VALARM',
+    'END:VEVENT',
     // Reception
     'BEGIN:VEVENT',
     'DTSTART:20260907T103000Z',
