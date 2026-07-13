@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#4a6741" />
-  <meta name="description" content="Sreehari & Amrutha Wedding Invitation — Saturday, 5 September 2026, Community Hall, Sreekandapuram" />
+  <meta name="theme-color" content="#7B1E2B" />
+  <meta name="description" content="Sreehari & Amrutha Wedding Invitation — Saturday 5 September 2026, Community Hall, Sreekandapuram" />
   <title>Sreehari &amp; Amrutha | Wedding Invitation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&family=Comforter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400;700&family=Comforter&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/wedding.css" />
 </head>
 <body>
+
+  <!-- Global petal rain (both pages) -->
+  <div class="petal-rain" id="petalRain" aria-hidden="true"></div>
+  <!-- Gold particles -->
+  <div class="gold-particles" id="goldParticles" aria-hidden="true"></div>
 
   <!-- ═══════════════════════════════════════
        PAGE 1 — SPLASH / HERO
@@ -19,8 +24,13 @@
   <section id="splash" class="page">
 
     <div class="splash-bg">
-      <img src="assets/splash-bg.jpg" alt="" aria-hidden="true" class="splash-bg-img" />
+      <img src="assets/kerala-wedding-bg.jpg" alt="" class="splash-bg-img" aria-hidden="true" />
       <div class="splash-overlay"></div>
+      <div class="lamp-glow lamp-l" aria-hidden="true"></div>
+      <div class="lamp-glow lamp-r" aria-hidden="true"></div>
+      <div class="vignette" aria-hidden="true"></div>
+      <div class="sunray sunray-l" aria-hidden="true"></div>
+      <div class="sunray sunray-r" aria-hidden="true"></div>
     </div>
 
     <!-- Music pill -->
@@ -37,14 +47,14 @@
       <div class="bismillah-img">ॐ</div>
     </div>
 
-    <!-- Wedding invitation title -->
+    <!-- Title -->
     <div class="splash-title-logo splash-enter" style="--delay:0.3s">
       <h2 class="splash-wedding-title">Wedding<br>Invitation</h2>
     </div>
 
     <!-- Invite text -->
     <p class="splash-invite splash-enter" style="--delay:0.4s">
-      We cordially invite you to honor us with your gracious presence at our auspicious wedding
+      We cordially invite you to our auspicious wedding celebration
     </p>
 
     <!-- Groom name -->
@@ -61,31 +71,25 @@
     <!-- Bride name -->
     <p class="splash-bride splash-enter" style="--delay:0.65s">Amrutha</p>
 
-    <!-- Countdown timer -->
+    <!-- Countdown -->
     <div class="countdown splash-enter" id="countdown" style="--delay:0.8s">
       <div class="count-unit">
         <span class="count-label">Days</span>
         <div class="count-box"><span id="cd-days">00</span></div>
       </div>
-      <span class="count-sep">
-        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3" fill="white" opacity="0.7"/></svg>
-      </span>
+      <span class="count-sep"><svg width="6" height="6" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3" fill="#C89B3C" opacity="0.9"/></svg></span>
       <div class="count-unit">
         <span class="count-label">Hours</span>
         <div class="count-box"><span id="cd-hours">00</span></div>
       </div>
-      <span class="count-sep">
-        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3" fill="white" opacity="0.7"/></svg>
-      </span>
+      <span class="count-sep"><svg width="6" height="6" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3" fill="#C89B3C" opacity="0.9"/></svg></span>
       <div class="count-unit">
-        <span class="count-label">Minutes</span>
+        <span class="count-label">Mins</span>
         <div class="count-box"><span id="cd-mins">00</span></div>
       </div>
-      <span class="count-sep">
-        <svg width="7" height="7" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3" fill="white" opacity="0.7"/></svg>
-      </span>
+      <span class="count-sep"><svg width="6" height="6" viewBox="0 0 8 8"><circle cx="4" cy="4" r="3" fill="#C89B3C" opacity="0.9"/></svg></span>
       <div class="count-unit">
-        <span class="count-label">Seconds</span>
+        <span class="count-label">Secs</span>
         <div class="count-box"><span id="cd-secs">00</span></div>
       </div>
     </div>
@@ -100,256 +104,266 @@
     <div class="swipe-wrap splash-enter" style="--delay:1.2s">
       <div class="swipe-track" id="swipeTrack" role="button" aria-label="Swipe right to open invitation">
         <div class="swipe-thumb" id="swipeThumb">
-          <i data-lucide="chevron-right" width="28" height="28" style="color:#4a6741"></i>
+          <i data-lucide="chevron-right" width="28" height="28" style="color:#7B1E2B"></i>
         </div>
         <span class="swipe-label" id="swipeLabel">Swipe to open invite</span>
         <div class="swipe-fill" id="swipeFill"></div>
       </div>
     </div>
 
-    <!-- Floating petals -->
+    <!-- Petals (splash only) -->
     <div class="petals" aria-hidden="true">
-      <span class="petal" style="--x:10%;--delay:0s;--dur:6s"></span>
-      <span class="petal" style="--x:25%;--delay:1.5s;--dur:7s"></span>
-      <span class="petal" style="--x:50%;--delay:0.8s;--dur:8s"></span>
-      <span class="petal" style="--x:70%;--delay:2s;--dur:5.5s"></span>
-      <span class="petal" style="--x:85%;--delay:0.3s;--dur:7.5s"></span>
+      <span class="petal" style="--x:8%;--delay:0s;--dur:6s;--rot:25deg"></span>
+      <span class="petal" style="--x:22%;--delay:1.5s;--dur:7.5s;--rot:-18deg"></span>
+      <span class="petal" style="--x:45%;--delay:0.6s;--dur:8s;--rot:40deg"></span>
+      <span class="petal" style="--x:68%;--delay:2.2s;--dur:5.8s;--rot:-30deg"></span>
+      <span class="petal" style="--x:88%;--delay:0.3s;--dur:7s;--rot:15deg"></span>
+      <span class="petal" style="--x:32%;--delay:3s;--dur:6.5s;--rot:-10deg"></span>
+      <span class="petal" style="--x:77%;--delay:1s;--dur:9s;--rot:50deg"></span>
     </div>
 
   </section>
 
   <!-- ═══════════════════════════════════════
-       PAGE 2 — DETAILS
+       PAGE 2 — DETAILS (Kerala Scrolling)
   ═══════════════════════════════════════ -->
   <section id="details" class="page page-details" aria-hidden="true">
 
-    <!-- Hero top -->
-    <div class="details-hero">
-      <img src="assets/details-hero-bg.jpg" alt="" aria-hidden="true" class="details-hero-bg" />
-      <div class="details-hero-overlay"></div>
-
-      <!-- Music pill -->
-      <button class="music-pill music-pill-details" id="musicPillDetails" aria-label="Toggle music">
-        <span class="music-pill-label">Mangal Vadya</span>
-        <span class="music-pill-btn">
-          <i data-lucide="music-2" class="mp-icon icon-play" width="12" height="12"></i>
-          <i data-lucide="pause" class="mp-icon icon-pause" width="12" height="12"></i>
-        </span>
-      </button>
-
-      <!-- Names in hero -->
-      <div class="dh-groom"><span>Sreehari</span></div>
-      <div class="dh-weds-wrap">
-        <div class="dh-weds-bar"></div>
-        <span class="dh-weds">weds</span>
-      </div>
-      <p class="dh-bride">Amrutha</p>
-      <div class="dh-divider-row">
-        <div class="dh-divider-line"></div>
-        <span class="dh-sparkle-star">✦</span>
-        <div class="dh-divider-line"></div>
-      </div>
+    <!-- Fixed Kerala background layer (position:fixed relative to #details due to transform) -->
+    <div class="kerala-bg-layer" aria-hidden="true">
+      <img src="assets/kerala-wedding-bg.jpg" alt="" class="kerala-bg-img" />
+      <div class="kerala-overlay"></div>
+      <div class="kerala-vignette"></div>
+      <!-- Lamp glow effects -->
+      <div class="k-lamp-glow k-lamp-l"></div>
+      <div class="k-lamp-glow k-lamp-r"></div>
     </div>
 
-    <!-- Scrollable content card -->
-    <div class="details-sheet">
+    <!-- Music pill (details page) -->
+    <button class="music-pill music-pill-details" id="musicPillDetails" aria-label="Toggle music">
+      <span class="music-pill-label">Mangal Vadya</span>
+      <span class="music-pill-btn">
+        <i data-lucide="music-2" class="mp-icon icon-play" width="12" height="12"></i>
+        <i data-lucide="pause" class="mp-icon icon-pause" width="12" height="12"></i>
+      </span>
+    </button>
 
-      <!-- ── Invitation Header ── -->
-      <div class="invitation-header">
-        <p class="inv-eyebrow">AN INVITATION</p>
+    <!-- All scrollable content -->
+    <div class="details-scroll" id="detailsScroll">
+
+      <!-- ══ HERO ══ -->
+      <div class="inv-hero">
+        <p class="inv-eyebrow">ॐ &nbsp; AN INVITATION &nbsp; ॐ</p>
+        <div class="gold-divider">
+          <div class="gold-line"></div>
+          <span class="gold-gem">✦</span>
+          <div class="gold-line"></div>
+        </div>
         <p class="inv-headline">With Joyful Hearts</p>
-        <div class="inv-divider">
-          <div class="inv-line"></div>
-          <span class="inv-diamond">✦</span>
-          <div class="inv-line"></div>
+        <div class="gold-divider" style="margin:12px auto 22px">
+          <div class="gold-line"></div>
+          <span class="gold-gem">❧</span>
+          <div class="gold-line"></div>
+        </div>
+        <h1 class="hero-groom">Sreehari</h1>
+        <p class="hero-weds">weds</p>
+        <p class="hero-bride">Amrutha</p>
+        <p class="hero-date">Saturday, 5<sup>th</sup> September 2026</p>
+        <div class="scroll-cta">
+          <span class="scroll-cta-text">Scroll to explore</span>
+          <div class="scroll-arrow">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C89B3C" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
         </div>
       </div>
 
-      <!-- ── Host / Parents Card ── -->
-      <div class="info-card host-card stagger-child">
-        <p class="host-blessing">With Heavenly Blessings of <em>Late Shri Babu K.P,</em></p>
-        <h3 class="host-name">Smt. Geethalatha</h3>
-        <p class="host-address">(Sukhada House, Eravattur, Perambra)</p>
-        <a href="tel:9539749149" class="host-phone">Ph: 9539749149</a>
-      </div>
-
-      <!-- ── Invitation Body Text ── -->
-      <p class="inv-body-text">
-        Requests the honor of your gracious presence<br>
-        at the Wedding of her beloved Son
-      </p>
-
-      <!-- ── Groom Block ── -->
-      <div class="couple-block stagger-child">
-        <h2 class="couple-script-name">Sreehari</h2>
-        <p class="couple-granddesc">Grand S/o Late Shri Kelu Kurup &amp; Late Smt Lakshmi Amma</p>
-        <p class="couple-granddesc">and Late Shri Kunhiraman Nair &amp; Smt Kamalam Amma</p>
-      </div>
-
-      <!-- ── "with" connector ── -->
-      <p class="couple-with-text">with</p>
-
-      <!-- ── Bride Block ── -->
-      <div class="couple-block stagger-child">
-        <h2 class="couple-script-name">Amrutha</h2>
-        <p class="couple-granddesc">D/o Shri. K.C. Balakrishnan Nambiar &amp; Smt. Ramani. C</p>
-        <p class="couple-address-label">(Arun Nivas, Kanhileri, Sreekandapuram)</p>
-      </div>
-
-      <!-- ── Wedding Ceremony Section ── -->
-      <div class="event-section stagger-child">
-        <p class="event-eyebrow">SAVE THE DATE</p>
-        <h2 class="event-title">Wedding Ceremony</h2>
-        <div class="inv-divider" style="margin: 8px auto 20px; max-width: 200px;">
-          <div class="inv-line"></div>
-          <span class="inv-diamond">✦</span>
-          <div class="inv-line"></div>
+      <!-- ══ HOST CARD ══ -->
+      <div class="glass-section reveal-up">
+        <div class="glass-card">
+          <div class="card-ornament">
+            <div class="gold-line"></div><span class="gold-gem small">✦</span><div class="gold-line"></div>
+          </div>
+          <p class="host-blessing">With Heavenly Blessings of <em>Late Shri Babu K.P,</em></p>
+          <h3 class="host-name">Smt. Geethalatha</h3>
+          <p class="host-address">(Sukhada House, Eravattur, Perambra)</p>
         </div>
+      </div>
 
-        <div class="info-card event-card">
-          <h3 class="event-card-title">Wedding Ceremony</h3>
+      <!-- ══ INVITATION BODY TEXT ══ -->
+      <div class="inv-body-wrap reveal-up">
+        <p class="inv-body-text">
+          Requests the honor of your gracious presence<br>
+          at the Wedding of her beloved Son
+        </p>
+      </div>
+
+      <!-- ══ GROOM BLOCK ══ -->
+      <div class="glass-section reveal-up">
+        <div class="glass-card couple-card">
+          <h2 class="couple-name groom-name">Sreehari</h2>
+          <p class="couple-desc">Grand S/o Late Shri Kelu Kurup &amp; Late Smt Lakshmi Amma</p>
+          <p class="couple-desc">and Late Shri Kunhiraman Nair &amp; Smt Kamalam Amma</p>
+        </div>
+      </div>
+
+      <!-- ══ WITH CONNECTOR ══ -->
+      <div class="with-divider reveal-up">
+        <div class="gold-divider" style="max-width:80px; margin:0 auto 8px">
+          <div class="gold-line"></div>
+        </div>
+        <p class="with-text">with</p>
+        <div class="gold-divider" style="max-width:80px; margin:8px auto 0">
+          <div class="gold-line"></div>
+        </div>
+      </div>
+
+      <!-- ══ BRIDE BLOCK ══ -->
+      <div class="glass-section reveal-up">
+        <div class="glass-card couple-card">
+          <h2 class="couple-name bride-name">Amrutha</h2>
+          <p class="couple-desc">D/o Shri. K.C. Balakrishnan Nambiar &amp; Smt. Ramani. C</p>
+          <p class="couple-addr">(Arun Nivas, Kanhileri, Sreekandapuram)</p>
+        </div>
+      </div>
+
+      <!-- ══ WEDDING CEREMONY ══ -->
+      <div class="glass-section reveal-up">
+        <p class="section-eyebrow">SAVE THE DATE</p>
+        <h2 class="section-title">Wedding Ceremony</h2>
+        <div class="gold-divider title-divider">
+          <div class="gold-line"></div><span class="gold-gem">✦</span><div class="gold-line"></div>
+        </div>
+        <div class="glass-card event-card">
+          <h3 class="event-card-name">Wedding Ceremony</h3>
           <p class="event-card-date">Saturday, 5<sup>th</sup> September 2026</p>
           <p class="event-card-sub">(1202 Chingam 20)</p>
-          <div class="event-card-venue">
+          <div class="event-venue-row">
             <i data-lucide="map-pin" width="14" height="14"></i>
             <span>Community Hall, Sreekandapuram</span>
           </div>
-          <div class="event-muhu-box">
-            Muhurtham: 10:30 AM – 11:30 AM
-          </div>
-
-          <!-- Calendar buttons -->
+          <div class="muhu-pill">Muhurtham: 10:30 AM – 11:30 AM</div>
           <div class="cal-buttons">
-            <a
-              href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sreehari+%26+Amrutha+Wedding+Ceremony&dates=20260905T050000Z/20260905T060000Z&details=Muhurtham+10:30+AM+to+11:30+AM&location=Community+Hall,+Sreekandapuram"
-              target="_blank"
-              class="cal-btn cal-google"
-              rel="noopener"
-              id="googleCalBtn"
-            >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sreehari+%26+Amrutha+Wedding+Ceremony&dates=20260905T050000Z/20260905T060000Z&details=Muhurtham+10:30+AM+to+11:30+AM&location=Community+Hall,+Sreekandapuram" target="_blank" class="cal-btn cal-google" rel="noopener" id="googleCalBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
               Google Calendar
             </a>
             <button class="cal-btn cal-apple" id="icsDownloadBtn">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Apple Calendar
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Apple / iOS
             </button>
           </div>
         </div>
       </div>
 
-      <!-- ── Reception ── -->
-      <div class="card-section stagger-child">
-        <h2 class="section-heading">Wedding Reception</h2>
-        <div class="info-card venue-elegant">
-          <div class="venue-top">
+      <!-- ══ WEDDING RECEPTION ══ -->
+      <div class="glass-section reveal-up">
+        <h2 class="section-title">Wedding Reception</h2>
+        <div class="gold-divider title-divider">
+          <div class="gold-line"></div><span class="gold-gem">✦</span><div class="gold-line"></div>
+        </div>
+        <div class="glass-card">
+          <div class="venue-top-row">
             <div class="venue-pin-circle">
               <i data-lucide="map-pin" width="18" height="18"></i>
             </div>
-            <div class="venue-text">
-              <h3 class="venue-name">Surabhi Avenue</h3>
-              <p class="venue-addr">Perambra</p>
+            <div class="venue-text-block">
+              <h3 class="venue-name-text">Surabhi Avenue</h3>
+              <p class="venue-sub-text">Perambra</p>
             </div>
           </div>
           <div class="venue-sep"></div>
-          <div class="venue-time">
-            <i data-lucide="clock" width="14" height="14"></i>
+          <div class="venue-time-row">
+            <i data-lucide="clock" width="13" height="13"></i>
             <span>Monday, 7<sup>th</sup> September 2026 &nbsp;·&nbsp; From 4:00 PM</span>
           </div>
-          <a href="https://maps.google.com/?q=Surabhi+Avenue+Perambra" target="_blank" rel="noopener" class="directions-btn-full">
-            <i data-lucide="navigation" width="15" height="15"></i>
+          <a href="https://maps.google.com/?q=Surabhi+Avenue+Perambra" target="_blank" rel="noopener" class="directions-btn">
+            <i data-lucide="navigation" width="14" height="14"></i>
             Get Directions
           </a>
         </div>
       </div>
 
-      <!-- ── For Enquiry ── -->
-      <div class="card-section stagger-child">
-        <h2 class="section-heading">For Enquiry</h2>
-        <div class="contact-grid" style="grid-template-columns: 1fr;">
-          <div class="info-card contact-center">
-            <h3 class="contact-name">Geethalatha</h3>
-            <p class="contact-role">Sreehari's Mother</p>
-            <a href="tel:9539749149" class="contact-phone">9539749149</a>
-            <a href="tel:9539749149" class="phone-btn outline" aria-label="Call Geethalatha">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-              </svg>
-            </a>
-          </div>
+      <!-- ══ FOR ENQUIRY ══ -->
+      <div class="glass-section reveal-up">
+        <h2 class="section-title">For Enquiry</h2>
+        <div class="gold-divider title-divider">
+          <div class="gold-line"></div><span class="gold-gem">✦</span><div class="gold-line"></div>
+        </div>
+        <div class="glass-card contact-card">
+          <h3 class="contact-name">Sreehari's Family</h3>
+          <p class="contact-role">Cousin</p>
+          <a href="tel:+919074707032" class="contact-phone-link">+91 9074 707 032</a>
+          <a href="tel:+919074707032" class="phone-call-btn" aria-label="Call">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </a>
         </div>
       </div>
 
-      <!-- ── How to Reach ── -->
-      <div class="card-section stagger-child">
-        <h2 class="section-heading">How to Reach</h2>
+      <!-- ══ HOW TO REACH ══ -->
+      <div class="glass-section reveal-up">
+        <h2 class="section-title">How to Reach</h2>
+        <div class="gold-divider title-divider">
+          <div class="gold-line"></div><span class="gold-gem">✦</span><div class="gold-line"></div>
+        </div>
         <div class="transport-accordion">
 
-          <div class="accordion-item">
+          <div class="accordion-item glass-card">
             <button class="accordion-header" aria-expanded="false">
-              <span class="transport-icon">
-                <i data-lucide="plane" width="20" height="20"></i>
-              </span>
+              <span class="transport-icon"><i data-lucide="plane" width="20" height="20"></i></span>
               <span class="transport-title">By Air</span>
               <i data-lucide="chevron-down" class="accordion-chevron" width="18" height="18"></i>
             </button>
-            <div class="accordion-body">
-              <div class="accordion-inner">
-                <ul class="transport-list">
-                  <li>Nearest airport: <span class="t-highlight">Calicut International Airport (CCJ)</span></li>
-                  <li>Distance: <span class="t-highlight">~60 km · ~1 hr 30 min drive</span></li>
-                  <li>Recommended: Pre-paid taxi or app-based taxi to Sreekandapuram</li>
-                </ul>
-              </div>
-            </div>
+            <div class="accordion-body"><div class="accordion-inner">
+              <ul class="transport-list">
+                <li>Nearest airport: <span class="t-hi">Calicut International Airport (CCJ)</span></li>
+                <li>Distance: <span class="t-hi">~60 km · ~1 hr 30 min drive</span></li>
+                <li>Recommended: Pre-paid taxi or app cab to Sreekandapuram</li>
+              </ul>
+            </div></div>
           </div>
 
-          <div class="accordion-item">
+          <div class="accordion-item glass-card">
             <button class="accordion-header" aria-expanded="false">
-              <span class="transport-icon">
-                <i data-lucide="train-front" width="20" height="20"></i>
-              </span>
+              <span class="transport-icon"><i data-lucide="train-front" width="20" height="20"></i></span>
               <span class="transport-title">By Train</span>
               <i data-lucide="chevron-down" class="accordion-chevron" width="18" height="18"></i>
             </button>
-            <div class="accordion-body">
-              <div class="accordion-inner">
-                <ul class="transport-list">
-                  <li>Nearest station: <span class="t-highlight">Kannur Railway Station</span></li>
-                  <li>Distance to venue: <span class="t-highlight">~25 km · ~40 min drive</span></li>
-                  <li>Recommended: Local bus or taxi to Sreekandapuram</li>
-                </ul>
-              </div>
-            </div>
+            <div class="accordion-body"><div class="accordion-inner">
+              <ul class="transport-list">
+                <li>Nearest station: <span class="t-hi">Kannur Railway Station</span></li>
+                <li>Distance: <span class="t-hi">~25 km · ~40 min drive</span></li>
+                <li>Recommended: Local bus or taxi to Sreekandapuram</li>
+              </ul>
+            </div></div>
           </div>
 
-          <div class="accordion-item">
+          <div class="accordion-item glass-card">
             <button class="accordion-header" aria-expanded="false">
-              <span class="transport-icon">
-                <i data-lucide="bus" width="20" height="20"></i>
-              </span>
+              <span class="transport-icon"><i data-lucide="bus" width="20" height="20"></i></span>
               <span class="transport-title">By Bus</span>
               <i data-lucide="chevron-down" class="accordion-chevron" width="18" height="18"></i>
             </button>
-            <div class="accordion-body">
-              <div class="accordion-inner">
-                <ul class="transport-list">
-                  <li>Nearest bus stand: <span class="t-highlight">Sreekandapuram Bus Stand</span></li>
-                  <li>Buses from Kannur, Thalassery, Kozhikode</li>
-                  <li>Recommended: Walk or local auto-rickshaw to venue</li>
-                </ul>
-              </div>
-            </div>
+            <div class="accordion-body"><div class="accordion-inner">
+              <ul class="transport-list">
+                <li>Nearest bus stand: <span class="t-hi">Sreekandapuram Bus Stand</span></li>
+                <li>Buses from Kannur, Thalassery, Kozhikode</li>
+                <li>Recommended: Walk or auto-rickshaw to venue</li>
+              </ul>
+            </div></div>
           </div>
 
         </div>
       </div>
 
-      <!-- ── Photo Gallery ── -->
-      <div class="card-section">
-        <h2 class="section-heading">Photo Gallery</h2>
-        <div class="info-card selfie-card">
-
+      <!-- ══ PHOTO GALLERY ══ -->
+      <div class="glass-section reveal-up">
+        <h2 class="section-title">Photo Gallery</h2>
+        <div class="gold-divider title-divider">
+          <div class="gold-line"></div><span class="gold-gem">✦</span><div class="gold-line"></div>
+        </div>
+        <div class="glass-card selfie-card">
           <div class="selfie-header">
             <div class="selfie-scan-wrap">
               <span class="kwik-ring kwik-ring-1"></span>
@@ -358,42 +372,53 @@
             </div>
             <span class="selfie-coming-tag">Coming Soon</span>
           </div>
-
           <div class="selfie-body">
             <h3 class="selfie-headline">Your face,<br>your memories</h3>
-            <p class="selfie-sub">Take a quick selfie after the wedding and our smart gallery will find every photo you appear in — delivered straight to your phone, no searching needed.</p>
-
+            <p class="selfie-sub">Take a quick selfie after the wedding and our smart gallery will find every photo you appear in — delivered straight to your phone.</p>
             <button class="selfie-cta" disabled>
               <i data-lucide="camera" width="17" height="17"></i>
               Get My Photos
             </button>
-
             <p class="selfie-note">Link will be available a few days after the wedding</p>
           </div>
-
         </div>
       </div>
 
-      <!-- ── Downloads ── -->
-      <div class="card-section stagger-child">
-        <h2 class="section-heading">Downloads</h2>
-        <div class="download-grid">
-          <div class="info-card download-card">
-            <div class="download-preview">
-              <img src="assets/wedding-card.jpg" alt="Sreehari & Amrutha Wedding Card" class="download-thumb" />
+      <!-- ══ DOWNLOADS ══ -->
+      <div class="glass-section reveal-up">
+        <h2 class="section-title">Downloads</h2>
+        <div class="gold-divider title-divider">
+          <div class="gold-line"></div><span class="gold-gem">✦</span><div class="gold-line"></div>
+        </div>
+        <div class="glass-card download-card-wrap">
+          <div class="download-img-preview">
+            <img src="assets/wedding-card.jpg" alt="Sreehari & Amrutha Wedding Card"
+              class="download-thumb-img"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="download-placeholder" style="display:none">
+              <i data-lucide="image" width="32" height="32"></i>
+              <span>Wedding Card</span>
             </div>
-            <p class="download-label">Wedding Card</p>
-            <button class="download-btn" id="downloadCardBtn">Download Card</button>
           </div>
+          <p class="download-lbl">Sreehari &amp; Amrutha — Wedding Card</p>
+          <button class="gold-btn" id="downloadCardBtn">
+            <i data-lucide="download" width="15" height="15"></i>
+            Download Card
+          </button>
         </div>
       </div>
 
-      <footer class="wedding-footer">
-        <p>With love &amp; Blessings</p>
+      <!-- ══ FOOTER ══ -->
+      <footer class="wedding-footer reveal-up">
+        <div class="gold-divider" style="max-width:220px; margin:0 auto 18px">
+          <div class="gold-line"></div><span class="gold-gem">✦</span><div class="gold-line"></div>
+        </div>
+        <p class="footer-bless">With love &amp; Blessings,<br>Friends &amp; Family</p>
         <p class="footer-names">Sreehari &amp; Amrutha</p>
+        <p class="footer-date">5 · 9 · 2026</p>
       </footer>
 
-    </div><!-- /details-sheet -->
+    </div><!-- /details-scroll -->
   </section>
 
   <!-- Background music -->
