@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#c1121f" />
+  <meta name="theme-color" content="#4a6741" />
+  <meta name="description" content="Sreehari & Amrutha Wedding Invitation — Saturday, 5 September 2026, Community Hall, Sreekandapuram" />
   <title>Sreehari &amp; Amrutha | Wedding Invitation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comforter&family=Poppins:wght@300;400;500;600&family=Sora:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&family=Comforter&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/wedding.css" />
 </head>
 <body>
@@ -18,12 +19,12 @@
   <section id="splash" class="page">
 
     <div class="splash-bg">
-      <img src="assets/theme-bg.jpg" alt="" aria-hidden="true" class="splash-bg-img" />
+      <img src="assets/splash-bg.jpg" alt="" aria-hidden="true" class="splash-bg-img" />
       <div class="splash-overlay"></div>
     </div>
 
-    <!-- Music pill (top-right) -->
-    <button class="music-pill" id="musicPill" aria-label="Play Nikkah Nasheed">
+    <!-- Music pill -->
+    <button class="music-pill" id="musicPill" aria-label="Play Mangal Vadya">
       <span class="music-pill-label">Mangal Vadya</span>
       <span class="music-pill-btn">
         <i data-lucide="music-2" class="mp-icon icon-play" width="12" height="12"></i>
@@ -31,36 +32,36 @@
       </span>
     </button>
 
-    <!-- Bismillah calligraphy — Figma y=80, w=104 -->
+    <!-- Om symbol -->
     <div class="bismillah splash-enter" style="--delay:0.15s">
-      <div class="bismillah-img" style="color: white; font-family: var(--font-serif); font-size: 24px; text-align: center; display: flex; align-items: center; justify-content: center;">ॐ</div>
+      <div class="bismillah-img">ॐ</div>
     </div>
 
-    <!-- Malayalam title logo — Figma y=119, w=224, h=116 -->
-    <div class="splash-title-logo splash-enter" style="--delay:0.3s; display: flex; align-items: center; justify-content: center;">
-      <h2 style="color: white; font-family: var(--font-astonia); font-size: 42px; text-align: center; line-height: 1.1;">Wedding<br>Invitation</h2>
+    <!-- Wedding invitation title -->
+    <div class="splash-title-logo splash-enter" style="--delay:0.3s">
+      <h2 class="splash-wedding-title">Wedding<br>Invitation</h2>
     </div>
 
-    <!-- Invite text — Figma y=268, Poppins 12px -->
+    <!-- Invite text -->
     <p class="splash-invite splash-enter" style="--delay:0.4s">
-      We cordially invite You to honor us with Your presence at the blessed occasion of our wedding
+      We cordially invite you to honor us with your gracious presence at our auspicious wedding
     </p>
 
-    <!-- Groom name — Figma y=314, Astonia Regular ~40px -->
+    <!-- Groom name -->
     <div class="splash-groom splash-enter" style="--delay:0.5s">
       <span>Sreehari</span>
     </div>
 
-    <!-- "weds" badge — Figma y≈381, Comforter on pink bar -->
+    <!-- "weds" badge -->
     <div class="splash-weds-wrap splash-enter" style="--delay:0.6s">
       <div class="splash-weds-bar"></div>
       <span class="splash-weds">weds</span>
     </div>
 
-    <!-- Bride name — Figma y=437, Astonia Regular ~40px -->
+    <!-- Bride name -->
     <p class="splash-bride splash-enter" style="--delay:0.65s">Amrutha</p>
 
-    <!-- Countdown timer — Figma y=526 -->
+    <!-- Countdown timer -->
     <div class="countdown splash-enter" id="countdown" style="--delay:0.8s">
       <div class="count-unit">
         <span class="count-label">Days</span>
@@ -89,19 +90,19 @@
       </div>
     </div>
 
-    <!-- Date + venue — Figma y=646/666 -->
+    <!-- Date + venue -->
     <div class="event-meta splash-enter" style="--delay:1s">
       <p class="event-date">Saturday, 5 September 2026</p>
-      <p class="event-venue">Kannur</p>
+      <p class="event-venue">Community Hall, Sreekandapuram</p>
     </div>
 
     <!-- Swipe CTA -->
     <div class="swipe-wrap splash-enter" style="--delay:1.2s">
-      <div class="swipe-track" id="swipeTrack" role="button" aria-label="Swipe right to confirm attendance">
+      <div class="swipe-track" id="swipeTrack" role="button" aria-label="Swipe right to open invitation">
         <div class="swipe-thumb" id="swipeThumb">
-          <i data-lucide="chevron-right" width="28" height="28" style="color:#780269"></i>
+          <i data-lucide="chevron-right" width="28" height="28" style="color:#4a6741"></i>
         </div>
-        <span class="swipe-label" id="swipeLabel">Yeah, I am attending</span>
+        <span class="swipe-label" id="swipeLabel">Swipe to open invite</span>
         <div class="swipe-fill" id="swipeFill"></div>
       </div>
     </div>
@@ -124,7 +125,7 @@
 
     <!-- Hero top -->
     <div class="details-hero">
-      <img src="assets/theme-bg.jpg" alt="" aria-hidden="true" class="details-hero-bg" />
+      <img src="assets/details-hero-bg.jpg" alt="" aria-hidden="true" class="details-hero-bg" />
       <div class="details-hero-overlay"></div>
 
       <!-- Music pill -->
@@ -136,21 +137,13 @@
         </span>
       </button>
 
-      <!-- Groom name — Astonia Regular, centered -->
-      <div class="dh-groom">
-        <span>Sreehari</span>
-      </div>
-
-      <!-- "weds" badge — same style as splash -->
+      <!-- Names in hero -->
+      <div class="dh-groom"><span>Sreehari</span></div>
       <div class="dh-weds-wrap">
         <div class="dh-weds-bar"></div>
         <span class="dh-weds">weds</span>
       </div>
-
-      <!-- Bride name — Astonia Regular, centered -->
       <p class="dh-bride">Amrutha</p>
-
-      <!-- Sparkle divider -->
       <div class="dh-divider-row">
         <div class="dh-divider-line"></div>
         <span class="dh-sparkle-star">✦</span>
@@ -161,42 +154,109 @@
     <!-- Scrollable content card -->
     <div class="details-sheet">
 
-      <!-- Save the date card -->
-      <div class="save-date-card">
-        <div class="sdt-ornament">
-          <div class="sdt-line"></div>
-          <span class="sdt-sparkle">✦</span>
-          <div class="sdt-line"></div>
+      <!-- ── Invitation Header ── -->
+      <div class="invitation-header">
+        <p class="inv-eyebrow">AN INVITATION</p>
+        <p class="inv-headline">With Joyful Hearts</p>
+        <div class="inv-divider">
+          <div class="inv-line"></div>
+          <span class="inv-diamond">✦</span>
+          <div class="inv-line"></div>
         </div>
-        <p class="sdt-eyebrow">Save the Date</p>
-        <p class="sdt-date">Saturday, 5 September 2026</p>
-        <p class="sdt-venue-hint">Kannur</p>
-        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sreehari+%26+Amrutha+Wedding&dates=20260905T043000Z/20260905T083000Z&details=Wedding+ceremony&location=Kannur" target="_blank" class="sdt-cal-btn" rel="noopener">
-          <i data-lucide="calendar" width="15" height="15"></i>
-          Add to Calendar
-        </a>
       </div>
 
-      <!-- ── Venue ── -->
+      <!-- ── Host / Parents Card ── -->
+      <div class="info-card host-card stagger-child">
+        <p class="host-blessing">With Heavenly Blessings of <em>Late Shri Babu K.P,</em></p>
+        <h3 class="host-name">Smt. Geethalatha</h3>
+        <p class="host-address">(Sukhada House, Eravattur, Perambra)</p>
+        <a href="tel:9539749149" class="host-phone">Ph: 9539749149</a>
+      </div>
 
+      <!-- ── Invitation Body Text ── -->
+      <p class="inv-body-text">
+        Requests the honor of your gracious presence<br>
+        at the Wedding of her beloved Son
+      </p>
+
+      <!-- ── Groom Block ── -->
+      <div class="couple-block stagger-child">
+        <h2 class="couple-script-name">Sreehari</h2>
+        <p class="couple-granddesc">Grand S/o Late Shri Kelu Kurup &amp; Late Smt Lakshmi Amma</p>
+        <p class="couple-granddesc">and Late Shri Kunhiraman Nair &amp; Smt Kamalam Amma</p>
+      </div>
+
+      <!-- ── "with" connector ── -->
+      <p class="couple-with-text">with</p>
+
+      <!-- ── Bride Block ── -->
+      <div class="couple-block stagger-child">
+        <h2 class="couple-script-name">Amrutha</h2>
+        <p class="couple-granddesc">D/o Shri. K.C. Balakrishnan Nambiar &amp; Smt. Ramani. C</p>
+        <p class="couple-address-label">(Arun Nivas, Kanhileri, Sreekandapuram)</p>
+      </div>
+
+      <!-- ── Wedding Ceremony Section ── -->
+      <div class="event-section stagger-child">
+        <p class="event-eyebrow">SAVE THE DATE</p>
+        <h2 class="event-title">Wedding Ceremony</h2>
+        <div class="inv-divider" style="margin: 8px auto 20px; max-width: 200px;">
+          <div class="inv-line"></div>
+          <span class="inv-diamond">✦</span>
+          <div class="inv-line"></div>
+        </div>
+
+        <div class="info-card event-card">
+          <h3 class="event-card-title">Wedding Ceremony</h3>
+          <p class="event-card-date">Saturday, 5<sup>th</sup> September 2026</p>
+          <p class="event-card-sub">(1202 Chingam 20)</p>
+          <div class="event-card-venue">
+            <i data-lucide="map-pin" width="14" height="14"></i>
+            <span>Community Hall, Sreekandapuram</span>
+          </div>
+          <div class="event-muhu-box">
+            Muhurtham: 10:30 AM – 11:30 AM
+          </div>
+
+          <!-- Calendar buttons -->
+          <div class="cal-buttons">
+            <a
+              href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sreehari+%26+Amrutha+Wedding+Ceremony&dates=20260905T050000Z/20260905T060000Z&details=Muhurtham+10:30+AM+to+11:30+AM&location=Community+Hall,+Sreekandapuram"
+              target="_blank"
+              class="cal-btn cal-google"
+              rel="noopener"
+              id="googleCalBtn"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Google Calendar
+            </a>
+            <button class="cal-btn cal-apple" id="icsDownloadBtn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Apple Calendar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Reception ── -->
       <div class="card-section stagger-child">
-        <h2 class="section-heading">Reception Venue</h2>
+        <h2 class="section-heading">Wedding Reception</h2>
         <div class="info-card venue-elegant">
           <div class="venue-top">
             <div class="venue-pin-circle">
               <i data-lucide="map-pin" width="18" height="18"></i>
             </div>
             <div class="venue-text">
-              <h3 class="venue-name">Surabhi Auditorium</h3>
+              <h3 class="venue-name">Surabhi Avenue</h3>
               <p class="venue-addr">Perambra</p>
             </div>
           </div>
           <div class="venue-sep"></div>
           <div class="venue-time">
-            <i data-lucide="clock" width="14" height="14" style="color:#516271"></i>
-            <span>Monday, 7 September 2026</span>
+            <i data-lucide="clock" width="14" height="14"></i>
+            <span>Monday, 7<sup>th</sup> September 2026 &nbsp;·&nbsp; From 4:00 PM</span>
           </div>
-          <a href="https://maps.google.com/?q=Surabhi+Auditorium+Perambra" target="_blank" rel="noopener" class="directions-btn-full">
+          <a href="https://maps.google.com/?q=Surabhi+Avenue+Perambra" target="_blank" rel="noopener" class="directions-btn-full">
             <i data-lucide="navigation" width="15" height="15"></i>
             Get Directions
           </a>
@@ -206,13 +266,12 @@
       <!-- ── For Enquiry ── -->
       <div class="card-section stagger-child">
         <h2 class="section-heading">For Enquiry</h2>
-
         <div class="contact-grid" style="grid-template-columns: 1fr;">
           <div class="info-card contact-center">
-            <h3 class="contact-name">Sreehari's Family</h3>
-            <p class="contact-role">Cousin</p>
-            <a href="tel:+919074707032" class="contact-phone">+91 9074 707 032</a>
-            <a href="tel:+919074707032" class="phone-btn outline" aria-label="Call Cousin">
+            <h3 class="contact-name">Geethalatha</h3>
+            <p class="contact-role">Sreehari's Mother</p>
+            <a href="tel:9539749149" class="contact-phone">9539749149</a>
+            <a href="tel:9539749149" class="phone-btn outline" aria-label="Call Geethalatha">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
               </svg>
@@ -238,8 +297,8 @@
               <div class="accordion-inner">
                 <ul class="transport-list">
                   <li>Nearest airport: <span class="t-highlight">Calicut International Airport (CCJ)</span></li>
-                  <li>Distance: <span class="t-highlight">62 km · ~1 hr 30 min drive</span></li>
-                  <li>Recommended: Pre-paid taxi or app-based taxi</li>
+                  <li>Distance: <span class="t-highlight">~60 km · ~1 hr 30 min drive</span></li>
+                  <li>Recommended: Pre-paid taxi or app-based taxi to Sreekandapuram</li>
                 </ul>
               </div>
             </div>
@@ -256,9 +315,9 @@
             <div class="accordion-body">
               <div class="accordion-inner">
                 <ul class="transport-list">
-                  <li>Nearest station: <span class="t-highlight">Koyilandy Railway Station</span></li>
-                  <li>Distance: <span class="t-highlight">15 km · ~30 min drive</span></li>
-                  <li>Recommended: Local bus or auto-rickshaw</li>
+                  <li>Nearest station: <span class="t-highlight">Kannur Railway Station</span></li>
+                  <li>Distance to venue: <span class="t-highlight">~25 km · ~40 min drive</span></li>
+                  <li>Recommended: Local bus or taxi to Sreekandapuram</li>
                 </ul>
               </div>
             </div>
@@ -275,9 +334,9 @@
             <div class="accordion-body">
               <div class="accordion-inner">
                 <ul class="transport-list">
-                  <li>Nearest bus stand: <span class="t-highlight">Perambra Bus Stand</span></li>
-                  <li>Distance: <span class="t-highlight">1 km · ~3 min drive</span></li>
-                  <li>Recommended: Walk or local auto-rickshaw</li>
+                  <li>Nearest bus stand: <span class="t-highlight">Sreekandapuram Bus Stand</span></li>
+                  <li>Buses from Kannur, Thalassery, Kozhikode</li>
+                  <li>Recommended: Walk or local auto-rickshaw to venue</li>
                 </ul>
               </div>
             </div>
@@ -291,7 +350,6 @@
         <h2 class="section-heading">Photo Gallery</h2>
         <div class="info-card selfie-card">
 
-          <!-- Gradient header with animated face-scan rings -->
           <div class="selfie-header">
             <div class="selfie-scan-wrap">
               <span class="kwik-ring kwik-ring-1"></span>
@@ -301,7 +359,6 @@
             <span class="selfie-coming-tag">Coming Soon</span>
           </div>
 
-          <!-- Body -->
           <div class="selfie-body">
             <h3 class="selfie-headline">Your face,<br>your memories</h3>
             <p class="selfie-sub">Take a quick selfie after the wedding and our smart gallery will find every photo you appear in — delivered straight to your phone, no searching needed.</p>
@@ -317,42 +374,22 @@
         </div>
       </div>
 
-
       <!-- ── Downloads ── -->
       <div class="card-section stagger-child">
         <h2 class="section-heading">Downloads</h2>
         <div class="download-grid">
           <div class="info-card download-card">
             <div class="download-preview">
-              <img src="assets/wedding-card.png" alt="Wedding card preview" class="download-thumb" />
+              <img src="assets/wedding-card.jpg" alt="Sreehari & Amrutha Wedding Card" class="download-thumb" />
             </div>
-            <p class="download-label">Wedding card</p>
-            <button class="download-btn">Download card</button>
-          </div>
-
-        </div>
-      </div>
-      <!-- ── Wishes Section ── -->
-      <div class="card-section stagger-child">
-        <h2 class="section-heading">Leave a Wish</h2>
-        <div class="info-card wishes-card">
-          <form id="wishesForm" class="wishes-form">
-            <input type="text" id="wishName" name="wishName" placeholder="Wisher name" autocomplete="name" required />
-            <textarea id="wishMessage" name="wishMessage" rows="4" placeholder="Write your wish here" required></textarea>
-            <button type="submit" class="submit-wish-btn">Send Wish</button>
-          </form>
-          
-          <div class="wishes-divider"></div>
-          
-          <h3 class="wishes-list-heading">Public Wishes</h3>
-          <div id="wishesList" class="wishes-list">
-            <!-- Wishes will be injected here via JS -->
+            <p class="download-label">Wedding Card</p>
+            <button class="download-btn" id="downloadCardBtn">Download Card</button>
           </div>
         </div>
       </div>
 
       <footer class="wedding-footer">
-        <p>With love &amp; prayers</p>
+        <p>With love &amp; Blessings</p>
         <p class="footer-names">Sreehari &amp; Amrutha</p>
       </footer>
 
@@ -367,107 +404,5 @@
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="js/wedding.js"></script>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, push, onValue, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyARQyXh8SuC2Eem2JtXGtQ0vgph6_igePY",
-      authDomain: "sreehari-wedding.firebaseapp.com",
-      databaseURL: "https://sreehari-wedding-default-rtdb.firebaseio.com",
-      projectId: "sreehari-wedding",
-      storageBucket: "sreehari-wedding.firebasestorage.app",
-      messagingSenderId: "850359961428",
-      appId: "1:850359961428:web:31999003ba767dc83faac1",
-      measurementId: "G-GXNTBE8019"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getDatabase(app);
-
-    const form = document.getElementById('wishesForm');
-    const wishesList = document.getElementById('wishesList');
-    const wishesRef = ref(db, 'wishes');
-
-    if (form) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const nameInput = document.getElementById('wishName');
-        const messageInput = document.getElementById('wishMessage');
-        const btn = form.querySelector('.submit-wish-btn');
-        
-        const name = nameInput.value.trim();
-        const text = messageInput.value.trim();
-        
-        if (name && text) {
-          btn.disabled = true;
-          btn.innerText = 'Sending...';
-          
-          try {
-            await push(wishesRef, {
-              name,
-              text,
-              timestamp: serverTimestamp()
-            });
-            nameInput.value = '';
-            messageInput.value = '';
-          } catch(err) {
-            console.error("Error saving wish: ", err);
-            alert("Could not send wish. Please try again.");
-          } finally {
-            btn.disabled = false;
-            btn.innerText = 'Send Wish';
-          }
-        }
-      });
-    }
-
-    if (wishesList) {
-      onValue(wishesRef, (snapshot) => {
-        wishesList.innerHTML = '';
-        const wishes = [];
-        snapshot.forEach((childSnapshot) => {
-          wishes.push(childSnapshot.val());
-        });
-        
-        // Reverse so newest is on top
-        wishes.reverse();
-        
-        if (wishes.length === 0) {
-          wishesList.innerHTML = '<p class="empty-wishes">Be the first to leave a wish!</p>';
-        } else {
-          wishes.forEach(wish => {
-            const dateStr = wish.timestamp ? new Date(wish.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Just now';
-            const item = document.createElement('div');
-            item.className = 'wish-item';
-
-            const header = document.createElement('div');
-            header.className = 'wish-item-header';
-
-            const name = document.createElement('span');
-            name.className = 'wish-name';
-            name.textContent = wish.name || 'Guest';
-
-            const date = document.createElement('span');
-            date.className = 'wish-date';
-            date.textContent = dateStr;
-
-            const text = document.createElement('p');
-            text.className = 'wish-text';
-            text.textContent = wish.text || '';
-
-            header.append(name, date);
-            item.append(header, text);
-            wishesList.appendChild(item);
-          });
-        }
-      }, (error) => {
-        console.error("Error loading wishes: ", error);
-        wishesList.innerHTML = '<p class="empty-wishes">Wishes could not be loaded right now.</p>';
-      });
-    }
-  </script>
 </body>
 </html>

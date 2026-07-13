@@ -4,6 +4,7 @@
    WEDDING WEBSITE — JAVASCRIPT
    Sreehari & Amrutha
    Vivaha: Saturday, 05 September 2026
+   Reception: Monday, 07 September 2026
 ══════════════════════════════════════════ */
 
 // ── Wedding date target ────────────────────
@@ -24,17 +25,14 @@ const MUSIC_TRACKS  = [
 ];
 
 // ── State ──────────────────────────────────
-let musicStarted = false;  // has audio.play() ever succeeded?
-let musicMuted   = false;  // is it currently muted?
+let musicStarted = false;
+let musicMuted   = false;
 let musicTrackIndex = 0;
 
 /* ════════════════════════════════════════════
    AUDIO UNLOCK — iOS Safari requires a play()
    call during a user gesture before any later
-   play() will succeed. We trigger a silent
-   play/pause on the very first touch so that
-   by the time the swipe completes, the audio
-   context is already unlocked.
+   play() will succeed.
 ════════════════════════════════════════════ */
 (function unlockAudioOnFirstTouch() {
   if (!bgMusic) return;
@@ -63,9 +61,8 @@ const cdSecs  = document.getElementById('cd-secs');
 function pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
 
 function animateDigit(el, newVal) {
-  if (el.textContent === newVal) return;
+  if (!el || el.textContent === newVal) return;
   el.classList.remove('flip');
-  // Force reflow
   void el.offsetWidth;
   el.textContent = newVal;
   el.classList.add('flip');
@@ -99,9 +96,11 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 /* ════════════════════════════════════════════
-   SWIPE-TO-ATTEND
+   SWIPE-TO-OPEN
 ════════════════════════════════════════════ */
 (function initSwipe() {
+  if (!swipeTrack || !swipeThumb) return;
+
   let isDragging = false;
   let startX     = 0;
   let currentX   = 0;
@@ -110,7 +109,7 @@ setInterval(updateCountdown, 1000);
   function getGeometry() {
     trackW    = swipeTrack.offsetWidth;
     thumbW    = swipeThumb.offsetWidth;
-    maxTravel = trackW - thumbW - 16; // 8px padding each side
+    maxTravel = trackW - thumbW - 16;
   }
 
   function setThumbX(x) {
@@ -174,9 +173,7 @@ setInterval(updateCountdown, 1000);
       swipeLabel.style.opacity = '1';
     }, 250);
 
-    // ── Start music SYNCHRONOUSLY during user gesture ──────────
-    // bgMusic.play() must be called within the touchend/mouseup
-    // event handler — any setTimeout breaks the autoplay policy.
+    // Start music SYNCHRONOUSLY during user gesture
     if (bgMusic && !musicStarted) {
       bgMusic.volume = 0;
       bgMusic.play().then(() => {
@@ -184,16 +181,13 @@ setInterval(updateCountdown, 1000);
         musicMuted   = false;
         updateMusicUI();
         fadeVolume(0, 0.55, 2000);
-      }).catch(() => {
-        // Autoplay blocked — user can tap the music pill to start
-      });
+      }).catch(() => {});
     }
 
-    // Page reveal can safely be deferred (it's UI only)
     setTimeout(revealDetails, 700);
   }
 
-  // ── Touch events ───────────────────────────
+  // Touch events
   swipeThumb.addEventListener('touchstart', e => {
     e.preventDefault();
     onDragStart(e.touches[0].clientX);
@@ -208,7 +202,7 @@ setInterval(updateCountdown, 1000);
 
   document.addEventListener('touchend', () => onDragEnd());
 
-  // ── Mouse events (desktop) ─────────────────
+  // Mouse events (desktop)
   swipeThumb.addEventListener('mousedown', e => {
     e.preventDefault();
     onDragStart(e.clientX);
@@ -218,7 +212,6 @@ setInterval(updateCountdown, 1000);
   });
   document.addEventListener('mouseup', () => onDragEnd());
 
-  // Resize
   window.addEventListener('resize', () => {
     if (!swipeTrack.classList.contains('done')) { currentX = 0; }
   });
@@ -230,10 +223,8 @@ setInterval(updateCountdown, 1000);
 function revealDetails() {
   details.classList.add('revealed');
   details.removeAttribute('aria-hidden');
-
   splash.classList.add('exit');
   setTimeout(() => { splash.style.visibility = 'hidden'; }, 900);
-
 }
 
 /* ════════════════════════════════════════════
@@ -255,7 +246,6 @@ function fadeVolume(from, to, durationMs) {
 
 function playNextTrack() {
   if (!bgMusic || MUSIC_TRACKS.length < 2) return;
-
   musicTrackIndex = (musicTrackIndex + 1) % MUSIC_TRACKS.length;
   bgMusic.src = MUSIC_TRACKS[musicTrackIndex];
   bgMusic.load();
@@ -266,8 +256,6 @@ function toggleMusic() {
   if (!bgMusic) return;
 
   if (!musicStarted) {
-    // Audio hasn't started yet (swipe not done / autoplay blocked)
-    // This click IS a user gesture so play() will work here
     bgMusic.volume = 0;
     bgMusic.play().then(() => {
       musicStarted = true;
@@ -278,7 +266,6 @@ function toggleMusic() {
     return;
   }
 
-  // Toggle mute / unmute (don't pause — keep buffer position)
   musicMuted    = !musicMuted;
   bgMusic.muted = musicMuted;
   updateMusicUI();
@@ -303,11 +290,79 @@ if (musicPillDet) musicPillDet.addEventListener('click', toggleMusic);
 if (bgMusic)      bgMusic.addEventListener('ended', playNextTrack);
 
 /* ════════════════════════════════════════════
+   ICS CALENDAR — iOS / Apple Calendar support
+   Generates a .ics file with both events:
+   1. Wedding Ceremony   — 5 Sep 2026
+   2. Wedding Reception  — 7 Sep 2026
+════════════════════════════════════════════ */
+function generateICS() {
+  // Times in UTC (IST = UTC+5:30)
+  // Ceremony: 10:30–11:30 IST  → 05:00–06:00 UTC
+  // Reception: 16:00 IST        → 10:30 UTC (approx 3h)
+  const icsContent = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Sreehari & Amrutha Wedding//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'X-WR-CALNAME:Sreehari & Amrutha Wedding',
+
+    // Event 1: Wedding Ceremony
+    'BEGIN:VEVENT',
+    'DTSTART:20260905T050000Z',
+    'DTEND:20260905T060000Z',
+    'SUMMARY:Sreehari & Amrutha — Wedding Ceremony',
+    'LOCATION:Community Hall\\, Sreekandapuram',
+    'DESCRIPTION:Muhurtham: 10:30 AM – 11:30 AM\\nSaturday\\, 5th September 2026 (1202 Chingam 20)',
+    'STATUS:CONFIRMED',
+    'TRANSP:OPAQUE',
+    'BEGIN:VALARM',
+    'TRIGGER:-PT1H',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Wedding Ceremony in 1 hour!',
+    'END:VALARM',
+    'END:VEVENT',
+
+    // Event 2: Wedding Reception
+    'BEGIN:VEVENT',
+    'DTSTART:20260907T103000Z',
+    'DTEND:20260907T163000Z',
+    'SUMMARY:Sreehari & Amrutha — Wedding Reception',
+    'LOCATION:Surabhi Avenue\\, Perambra',
+    'DESCRIPTION:Wedding Reception from 4:00 PM\\nMonday\\, 7th September 2026',
+    'STATUS:CONFIRMED',
+    'TRANSP:OPAQUE',
+    'BEGIN:VALARM',
+    'TRIGGER:-PT1H',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Wedding Reception in 1 hour!',
+    'END:VALARM',
+    'END:VEVENT',
+
+    'END:VCALENDAR'
+  ].join('\r\n');
+
+  const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'Sreehari-Amrutha-Wedding.ics';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 60000);
+}
+
+// Wire ICS button
+const icsBtn = document.getElementById('icsDownloadBtn');
+if (icsBtn) icsBtn.addEventListener('click', generateICS);
+
+/* ════════════════════════════════════════════
    DOWNLOAD CARD BUTTON
 ════════════════════════════════════════════ */
 async function downloadWeddingCard(btn) {
-  const CARD_URL = 'assets/wedding-card.png';
-  const FILENAME = 'Sreehari-Amrutha-WeddingCard.png';
+  const CARD_URL = 'assets/wedding-card.jpg';
+  const FILENAME = 'Sreehari-Amrutha-WeddingCard.jpg';
 
   const origText = btn.textContent;
   btn.textContent = 'Downloading…';
@@ -317,9 +372,9 @@ async function downloadWeddingCard(btn) {
     const res  = await fetch(CARD_URL);
     if (!res.ok) throw new Error('Card image not found');
     const blob = await res.blob();
-    const file = new File([blob], FILENAME, { type: blob.type || 'image/png' });
+    const file = new File([blob], FILENAME, { type: blob.type || 'image/jpeg' });
 
-    // Mobile: native share sheet (WhatsApp status, etc.)
+    // Mobile: native share sheet (WhatsApp, etc.)
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       await navigator.share({
         files: [file],
@@ -332,7 +387,9 @@ async function downloadWeddingCard(btn) {
       const a   = document.createElement('a');
       a.href     = url;
       a.download = FILENAME;
+      document.body.appendChild(a);
       a.click();
+      document.body.removeChild(a);
       setTimeout(() => URL.revokeObjectURL(url), 60000);
     }
   } catch {
@@ -343,22 +400,21 @@ async function downloadWeddingCard(btn) {
   }
 }
 
-document.querySelectorAll('.download-btn:not(.disabled)').forEach(btn => {
-  btn.addEventListener('click', () => downloadWeddingCard(btn));
-});
-
+const downloadCardBtn = document.getElementById('downloadCardBtn');
+if (downloadCardBtn) {
+  downloadCardBtn.addEventListener('click', () => downloadWeddingCard(downloadCardBtn));
+}
 
 /* ════════════════════════════════════════════
-   HAPTIC FEEDBACK (PWA / Safari)
+   HAPTIC FEEDBACK
 ════════════════════════════════════════════ */
 function vibrate(pattern) {
   if ('vibrate' in navigator) navigator.vibrate(pattern);
 }
-
-swipeThumb.addEventListener('touchstart', () => vibrate(10), { passive: true });
+if (swipeThumb) swipeThumb.addEventListener('touchstart', () => vibrate(10), { passive: true });
 
 /* ════════════════════════════════════════════
-   LUCIDE ICONS — initialise all data-lucide
+   LUCIDE ICONS
 ════════════════════════════════════════════ */
 if (typeof lucide !== 'undefined') lucide.createIcons();
 
@@ -385,4 +441,3 @@ if (typeof lucide !== 'undefined') lucide.createIcons();
     });
   });
 })();
-
