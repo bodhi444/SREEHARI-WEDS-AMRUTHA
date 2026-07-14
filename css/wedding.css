@@ -189,8 +189,26 @@ sup { font-size: 0.6em; vertical-align: super; }
 }
 
 /* All splash content floats above bg */
-#splash > *:not(.splash-bg):not(.petals) {
+#splash > *:not(.splash-bg):not(.petals):not(.splash-content) {
   position:absolute; z-index:2;
+}
+
+/* ── Splash flex container — adapts to ANY viewport height ── */
+.splash-content {
+  position:absolute; inset:0; z-index:2;
+  display:flex; flex-direction:column;
+  align-items:center;
+  padding:calc(max(env(safe-area-inset-top,0px), 40px) + 8px) 20px
+          calc(max(env(safe-area-inset-bottom,0px), 20px) + 8px);
+  overflow:hidden;
+}
+/* Reset absolute positioning from individual element styles */
+.splash-content > * {
+  position:relative !important;
+  top:auto !important; left:auto !important;
+  right:auto !important; bottom:auto !important;
+  transform:none !important;
+  flex-shrink:0;
 }
 
 /* Music pill */
@@ -221,86 +239,79 @@ sup { font-size: 0.6em; vertical-align: super; }
 
 /* Om */
 .bismillah {
-  top:calc(max(env(safe-area-inset-top,0px),54px) + 30px);
-  left:50%; transform:translateX(-50%);
-  width:80px; height:30px;
+  width:auto; height:auto;
+  margin-bottom:clamp(2px, 0.5vh, 8px);
 }
 .bismillah-img {
   display:flex; align-items:center; justify-content:center;
   color:rgba(255,255,255,0.92);
-  font-family:var(--font-script); font-size:28px; text-shadow:0 0 12px rgba(200,155,60,0.8);
+  font-family:var(--font-script); font-size:clamp(22px, 3.5vh, 28px); text-shadow:0 0 12px rgba(200,155,60,0.8);
 }
 
 /* Title */
 .splash-title-logo {
-  top:calc(max(env(safe-area-inset-top,0px),54px) + 72px);
-  left:50%; transform:translateX(-50%);
-  width:220px; height:110px;
+  width:auto; height:auto;
   display:flex; align-items:center; justify-content:center;
+  margin-bottom:clamp(6px, 1.5vh, 18px);
 }
 .splash-wedding-title {
-  font-family:var(--font-serif); font-size:40px; font-weight:400; font-style:italic;
+  font-family:var(--font-serif); font-size:clamp(28px, 5vh, 40px); font-weight:400; font-style:italic;
   color:#fff; text-align:center; line-height:1.1;
   text-shadow:0 2px 20px rgba(44,26,16,0.5);
 }
 
 /* Invite */
 .splash-invite {
-  top:calc(max(env(safe-area-inset-top,0px),54px) + 220px);
-  left:50%; transform:translateX(-50%);
   width:min(290px,calc(100% - 40px));
-  font-size:12px; font-weight:300; color:rgba(255,255,255,0.85);
+  font-size:clamp(10px, 1.5vh, 12px); font-weight:300; color:rgba(255,255,255,0.85);
   text-align:center; line-height:1.55; letter-spacing:.02em;
+  margin-bottom:clamp(4px, 1vh, 12px);
 }
 
 /* Groom name */
 .splash-groom {
-  top:calc(max(env(safe-area-inset-top,0px),54px) + 268px);
-  left:50%; transform:translateX(-50%);
   font-family:var(--font-astonia);
-  font-size:clamp(34px,10.1vw,42px);
+  font-size:clamp(26px, 5vh, 42px);
   color:#fff; text-align:center; white-space:nowrap; z-index:2;
   text-shadow:0 2px 20px rgba(44,26,16,0.45);
+  margin-bottom:clamp(0px, 0.3vh, 4px);
 }
 
 /* Weds badge */
 .splash-weds-wrap {
-  top:calc(max(env(safe-area-inset-top,0px),54px) + 320px);
-  left:50%; transform:translateX(-50%);
   display:flex; align-items:center; justify-content:center;
-  width:130px; height:64px; z-index:3;
+  width:130px; height:clamp(44px, 7vh, 64px); z-index:3;
+  margin-bottom:clamp(0px, 0.3vh, 4px);
 }
 .splash-weds-bar {
   position:absolute; width:82px; height:28px;
-  background:var(--gold); border-radius:3px; transform:rotate(-21deg); opacity:.9;
+  background:var(--gold); border-radius:3px; transform:rotate(-21deg) !important; opacity:.9;
 }
 .splash-weds {
   position:relative; font-family:var(--font-weds);
-  font-size:clamp(38px,11.2vw,46px); color:#fff;
-  transform:rotate(-25deg); white-space:nowrap; z-index:1;
+  font-size:clamp(30px, 5.5vh, 46px); color:#fff;
+  transform:rotate(-25deg) !important; white-space:nowrap; z-index:1;
   text-shadow:0 2px 10px rgba(44,26,16,0.3);
 }
 
 /* Bride name */
 .splash-bride {
-  top:calc(max(env(safe-area-inset-top,0px),54px) + 392px);
-  left:50%; transform:translateX(-50%);
   font-family:var(--font-astonia);
-  font-size:clamp(34px,10.1vw,42px);
+  font-size:clamp(26px, 5vh, 42px);
   color:#fff; text-align:center; white-space:nowrap; z-index:2;
   text-shadow:0 2px 20px rgba(44,26,16,0.45);
+  margin-bottom:clamp(6px, 1.5vh, 16px);
 }
 
 /* Countdown */
 .countdown {
-  top:calc(max(env(safe-area-inset-top,0px),54px) + 480px);
-  left:0; right:0;
-  display:flex; align-items:flex-end; justify-content:center; gap:5px;
+  display:flex; align-items:flex-end; justify-content:center; gap:clamp(2px, 0.5vw, 5px);
+  margin-bottom:clamp(4px, 1vh, 12px);
 }
-.count-unit { display:flex; flex-direction:column; align-items:center; gap:5px; }
-.count-label { font-size:11px; font-weight:700; color:rgba(255,255,255,0.82); letter-spacing:.06em; text-transform:uppercase; }
+.count-unit { display:flex; flex-direction:column; align-items:center; gap:clamp(2px, 0.5vh, 5px); }
+.count-label { font-size:clamp(8px, 1.3vh, 11px); font-weight:700; color:rgba(255,255,255,0.82); letter-spacing:.06em; text-transform:uppercase; }
 .count-box {
-  width:58px; height:78px; border-radius:8px;
+  width:clamp(44px, 14vw, 58px); height:clamp(56px, 9vh, 78px); border-radius:8px;
   border:1px solid rgba(200,155,60,0.65);
   background:linear-gradient(180deg, rgba(123,30,43,0.85) 0%, rgba(84,13,22,0.95) 100%);
   display:flex; align-items:center; justify-content:center;
@@ -312,27 +323,26 @@ sup { font-size: 0.6em; vertical-align: super; }
   background:rgba(255,255,255,0.12); pointer-events:none;
 }
 .count-box span {
-  font-family:var(--font-sans); font-size:27px; font-weight:700;
+  font-family:var(--font-sans); font-size:clamp(18px, 3vh, 27px); font-weight:700;
   color:#fff; letter-spacing:-.03em; position:relative; z-index:1;
 }
-.count-sep { display:flex; align-items:center; padding-bottom:30px; }
+.count-sep { display:flex; align-items:center; padding-bottom:clamp(18px, 4vh, 30px); }
 
 /* Event meta */
 .event-meta {
-  top:calc(max(env(safe-area-inset-top,0px),54px) + 600px);
-  left:0; right:0; text-align:center; padding:0 24px;
+  text-align:center; padding:0 24px;
+  margin-bottom:clamp(6px, 1.5vh, 16px);
 }
-.event-date { font-family:var(--font-script); font-size:16px; font-style:italic; color:#fff; line-height:1.4; text-shadow: 0 1px 6px rgba(0,0,0,0.5); }
-.event-venue { font-size:12px; font-weight:400; color:rgba(255,255,255,0.82); line-height:1.4; letter-spacing:.02em; }
+.event-date { font-family:var(--font-script); font-size:clamp(13px, 2vh, 16px); font-style:italic; color:#fff; line-height:1.4; text-shadow: 0 1px 6px rgba(0,0,0,0.5); }
+.event-venue { font-size:clamp(10px, 1.4vh, 12px); font-weight:400; color:rgba(255,255,255,0.82); line-height:1.4; letter-spacing:.02em; }
 
 /* Swipe CTA */
 .swipe-wrap {
-  bottom:calc(env(safe-area-inset-bottom,34px) + 22px);
-  left:50%; transform:translateX(-50%);
   width:min(296px,calc(100% - 48px));
+  margin-top:auto;  /* pushes to bottom of flex container */
 }
 .swipe-track {
-  position:relative; width:100%; height:76px;
+  position:relative; width:100%; height:clamp(58px, 9vh, 76px);
   border-radius:var(--r-pill);
   background:rgba(247,242,234,0.15);
   backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
@@ -919,27 +929,28 @@ sup { font-size: 0.6em; vertical-align: super; }
    RESPONSIVE — COMPACT HEIGHTS (≤820px)
 ═══════════════════════════════════════════ */
 @media (max-height:820px) {
-  .splash-groom,.splash-bride { font-size:clamp(26px,7.7vw,32px); }
-  .splash-weds { font-size:clamp(30px,8.9vw,34px); }
-  .count-box { width:52px; height:68px; }
-  .count-box span { font-size:23px; }
-  .count-label { font-size:10px; }
-  .count-sep  { padding-bottom:26px; }
-  .swipe-wrap { bottom:calc(max(env(safe-area-inset-bottom,0px),20px) + 16px); }
-  .event-meta { top:auto; bottom:calc(max(env(safe-area-inset-bottom,0px),20px) + 94px); }
-  .countdown  { top:auto; bottom:calc(max(env(safe-area-inset-bottom,0px),20px) + 148px); }
+  /* Flex handles spacing — just fine-tune sizes */
   .swipe-track { height:66px; }
   .swipe-thumb { width:52px; height:52px; }
   .swipe-label { padding-left:68px; font-size:13px; }
   .swipe-track.done .swipe-label { padding-left:0; }
 }
 
-@media (max-height:700px) {
-  .splash-invite { top:calc(max(env(safe-area-inset-top,0px),44px) + 205px); font-size:10px; }
-  .splash-groom  { top:calc(max(env(safe-area-inset-top,0px),44px) + 232px); font-size:clamp(22px,6.5vw,26px); }
-  .splash-weds-wrap { top:calc(max(env(safe-area-inset-top,0px),44px) + 278px); }
-  .splash-bride  { top:calc(max(env(safe-area-inset-top,0px),44px) + 324px); font-size:clamp(22px,6.5vw,26px); }
-  .countdown { bottom:calc(max(env(safe-area-inset-bottom,0px),16px) + 150px); }
+@media (max-height:620px) {
+  /* Very compact screens — scale everything down further */
+  .splash-wedding-title { font-size:clamp(22px, 4vh, 30px); }
+  .splash-groom,.splash-bride { font-size:clamp(20px, 4vh, 28px) !important; }
+  .splash-weds { font-size:clamp(24px, 4.5vh, 32px) !important; }
+  .splash-weds-wrap { height:clamp(36px, 6vh, 48px); }
+  .splash-weds-bar { width:64px; height:22px; }
+  .splash-invite { font-size:10px; }
+  .count-box { width:40px !important; height:50px !important; }
+  .count-box span { font-size:16px !important; }
+  .count-sep { padding-bottom:16px !important; }
+  .swipe-track { height:56px; }
+  .swipe-thumb { width:44px; height:44px; }
+  .swipe-label { padding-left:58px; font-size:12px; }
+  .swipe-track.done .swipe-label { padding-left:0; }
 }
 
 /* ═══════════════════════════════════════════
