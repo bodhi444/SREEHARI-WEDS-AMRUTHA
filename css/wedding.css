@@ -838,6 +838,84 @@ sup { font-size: 0.6em; vertical-align: super; }
 }
 
 /* ═══════════════════════════════════════════
+   HOST SECTION — PLAIN (NO CARD BOX)
+═══════════════════════════════════════════ */
+.host-section-plain {
+  padding:14px 24px;
+}
+.host-name-sm {
+  font-size:17px;
+  font-weight:500;
+}
+
+/* ═══════════════════════════════════════════
+   CEREMONY — TONED DOWN
+═══════════════════════════════════════════ */
+.ceremony-section { opacity:0.92; }
+.section-title-sm {
+  font-size:clamp(22px,7vw,30px);
+  color:var(--text-body);
+}
+.ceremony-card-muted {
+  background:rgba(247,242,234,0.75);
+  border-color:rgba(200,155,60,0.18);
+  box-shadow:0 4px 16px rgba(44,26,16,0.08);
+}
+.ceremony-card-muted:hover {
+  transform:none;
+  box-shadow:0 4px 16px rgba(44,26,16,0.08);
+}
+.ceremony-note {
+  font-family:var(--font-script);
+  font-size:12px;
+  font-style:italic;
+  color:var(--text-muted);
+  margin-top:8px;
+  opacity:.8;
+}
+
+/* ═══════════════════════════════════════════
+   RECEPTION — FEATURED / HIGHLIGHTED
+═══════════════════════════════════════════ */
+.reception-featured {
+  margin-top:30px;
+  padding-bottom:4px;
+}
+.section-title-featured {
+  font-size:clamp(32px,10vw,44px) !important;
+  background:linear-gradient(135deg, var(--maroon) 0%, var(--gold) 50%, var(--maroon-dark) 100%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 2px 8px rgba(44,26,16,0.15));
+}
+.reception-card-featured {
+  border:1.5px solid rgba(200,155,60,0.50);
+  box-shadow:
+    var(--shadow),
+    0 0 40px rgba(200,155,60,0.22),
+    inset 0 0 20px rgba(200,155,60,0.05);
+  position:relative;
+}
+.reception-card-featured::before {
+  content:'';
+  position:absolute; inset:-1px;
+  border-radius:var(--r-lg);
+  background:linear-gradient(135deg, rgba(200,155,60,0.25), transparent 40%, transparent 60%, rgba(200,155,60,0.25));
+  z-index:-1;
+  pointer-events:none;
+}
+.reception-time-featured {
+  font-size:14px !important;
+  font-weight:500;
+  color:var(--maroon) !important;
+  padding:8px 14px;
+  background:rgba(200,155,60,0.08);
+  border-radius:var(--r-pill);
+  border:1px solid rgba(200,155,60,0.20);
+}
+.reception-time-featured i { color:var(--gold) !important; }
+
+/* ═══════════════════════════════════════════
    RESPONSIVE — COMPACT HEIGHTS (≤820px)
 ═══════════════════════════════════════════ */
 @media (max-height:820px) {
