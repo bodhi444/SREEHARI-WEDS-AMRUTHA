@@ -319,7 +319,7 @@ if(icsBtn) icsBtn.addEventListener('click', generateICS);
    9. DOWNLOAD WEDDING CARD
 ════════════════════════════════════════ */
 async function downloadCard(btn) {
-  const CARD_URL = 'assets/wedding-card.jpg';
+  const CARD_URL = 'assets/wedd.jpg';
   const FILENAME = 'Sreehari-Amrutha-WeddingCard.jpg';
   const origHTML = btn.innerHTML;
   btn.innerHTML='<i data-lucide="loader" width="15" height="15" class="spin-icon"></i> Downloading…';
