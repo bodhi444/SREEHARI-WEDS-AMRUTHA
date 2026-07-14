@@ -96,10 +96,14 @@ let musicStarted = false, musicMuted = false, musicTrackIdx = 0;
       bgMusic.muted = false;
     }).catch(() => {});
     document.removeEventListener('touchstart', unlock, true);
+    document.removeEventListener('touchend', unlock, true);
     document.removeEventListener('mousedown',  unlock, true);
+    document.removeEventListener('click',  unlock, true);
   }
   document.addEventListener('touchstart', unlock, { capture:true, once:true, passive:true });
+  document.addEventListener('touchend', unlock, { capture:true, once:true, passive:true });
   document.addEventListener('mousedown',  unlock, { capture:true, once:true });
+  document.addEventListener('click',  unlock, { capture:true, once:true });
 })();
 
 /* ════════════════════════════════════════
