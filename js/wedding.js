@@ -393,3 +393,45 @@ if(typeof lucide!=='undefined') lucide.createIcons();
     glows.forEach(g => { g.style.opacity = String(0.6 + pct * 0.4); });
   }, { passive:true });
 })();
+
+/* ════════════════════════════════════════
+   14. RSVP FORM
+════════════════════════════════════════ */
+(function initRSVP() {
+  const form = document.getElementById('rsvpForm');
+  const guestCountGroup = document.getElementById('guestCountGroup');
+  const guestCountInput = document.getElementById('guestCount');
+  if(!form) return;
+
+  // Toggle guest count based on attendance
+  form.addEventListener('change', (e) => {
+    if(e.target.name === 'attending') {
+      if(e.target.value === 'yes') {
+        guestCountGroup.style.display = 'flex';
+        guestCountInput.required = true;
+      } else {
+        guestCountGroup.style.display = 'none';
+        guestCountInput.required = false;
+      }
+    }
+  });
+
+  // Handle submit to WhatsApp
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('guestName').value.trim();
+    const isAttending = form.querySelector('input[name="attending"]:checked').value === 'yes';
+    const count = guestCountInput.value;
+
+    let text = "";
+    if (isAttending) {
+      text = `Hi! This is *${name}*.\nI joyfully accept your invitation and will be attending the wedding!\nNumber of guests: *${count}*`;
+    } else {
+      text = `Hi! This is *${name}*.\nI regretfully won't be able to attend the wedding, but wishing you both a lifetime of happiness!`;
+    }
+
+    const waNum = "919074707032";
+    const waUrl = `https://wa.me/${waNum}?text=${encodeURIComponent(text)}`;
+    window.open(waUrl, '_blank');
+  });
+})();

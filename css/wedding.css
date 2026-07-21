@@ -821,6 +821,45 @@ sup { font-size: 0.6em; vertical-align: super; }
 .selfie-note { font-size:11px; color:var(--text-muted); text-align:center; margin-top:10px; font-style:italic; opacity:.75; }
 
 /* ═══════════════════════════════════════════
+   RSVP
+═══════════════════════════════════════════ */
+.rsvp-card { padding:24px; max-width:380px; margin:0 auto; text-align:left; }
+.rsvp-form { display:flex; flex-direction:column; gap:16px; }
+.form-group { display:flex; flex-direction:column; gap:8px; }
+.form-group label { font-size:13px; font-weight:600; color:var(--text-body); letter-spacing:.02em; }
+.rsvp-form input[type="text"], .rsvp-form input[type="number"] {
+  width:100%; padding:12px; border-radius:var(--r-md);
+  border:1px solid rgba(200,155,60,0.30);
+  background:rgba(255,255,255,0.4);
+  font-family:var(--font-sans); font-size:14px;
+  color:var(--text-body); transition:border-color .2s;
+}
+.rsvp-form input[type="text"]:focus, .rsvp-form input[type="number"]:focus {
+  outline:none; border-color:var(--gold);
+}
+.radio-group { display:flex; flex-direction:column; gap:10px; }
+.radio-label {
+  display:flex; align-items:center; gap:8px;
+  font-size:14px; color:var(--text-body); cursor:pointer;
+}
+.radio-label input[type="radio"] { display:none; }
+.radio-custom {
+  width:18px; height:18px; border-radius:50%;
+  border:1px solid rgba(200,155,60,0.50);
+  background:rgba(255,255,255,0.4);
+  display:flex; align-items:center; justify-content:center;
+  transition:all .2s;
+}
+.radio-label input[type="radio"]:checked + .radio-custom {
+  border-color:var(--gold);
+}
+.radio-label input[type="radio"]:checked + .radio-custom::after {
+  content:''; width:10px; height:10px; border-radius:50%;
+  background:var(--gold);
+}
+.rsvp-submit { width:100%; margin-top:8px; display:flex; justify-content:center; }
+
+/* ═══════════════════════════════════════════
    DOWNLOADS
 ═══════════════════════════════════════════ */
 .download-card-wrap { display:flex; flex-direction:column; align-items:center; gap:12px; padding:16px; }

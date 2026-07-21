@@ -395,6 +395,43 @@
         </div>
       </div>
 
+      <!-- ══ RSVP ══ -->
+      <div class="glass-section reveal-up">
+        <h2 class="section-title">RSVP</h2>
+        <div class="gold-divider title-divider">
+          <div class="gold-line"></div><span class="gold-gem">✦</span><div class="gold-line"></div>
+        </div>
+        <div class="glass-card rsvp-card">
+          <form id="rsvpForm" class="rsvp-form">
+            <div class="form-group">
+              <label for="guestName">Name</label>
+              <input type="text" id="guestName" placeholder="Your full name" required />
+            </div>
+            <div class="form-group">
+              <label>Will you attend?</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="attending" value="yes" checked />
+                  <span class="radio-custom"></span> Joyfully Accept
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="attending" value="no" />
+                  <span class="radio-custom"></span> Regretfully Decline
+                </label>
+              </div>
+            </div>
+            <div class="form-group" id="guestCountGroup">
+              <label for="guestCount">Number of Guests</label>
+              <input type="number" id="guestCount" min="1" max="10" value="1" required />
+            </div>
+            <button type="submit" class="gold-btn rsvp-submit">
+              <i data-lucide="send" width="16" height="16"></i>
+              Send via WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+
       <!-- ══ DOWNLOADS ══ -->
       <div class="glass-section reveal-up">
         <h2 class="section-title">Downloads</h2>
