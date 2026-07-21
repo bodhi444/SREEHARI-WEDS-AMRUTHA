@@ -211,6 +211,26 @@ sup { font-size: 0.6em; vertical-align: super; }
   flex-shrink:0;
 }
 
+/* Enquiry pill */
+.enquiry-pill {
+  top: calc(max(env(safe-area-inset-top,0px),4px) + 8px);
+  left:16px;
+  display:flex; align-items:center; gap:6px;
+  padding:5px 6px 5px 10px;
+  border-radius:var(--r-pill);
+  border:1px solid rgba(255,255,255,0.4);
+  background:rgba(44,26,16,0.35);
+  backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  color:#fff; transition:background .25s; text-decoration:none;
+}
+.enquiry-pill:active { background:rgba(44,26,16,0.55); }
+.enquiry-pill-label { font-size:10px; font-weight:600; letter-spacing:0.02em; white-space:nowrap; text-transform:uppercase; opacity:0.9;}
+.enquiry-pill-btn {
+  display:flex; align-items:center; justify-content:center;
+  width:20px; height:20px; border-radius:50%;
+  background:rgba(255,255,255,0.15); flex-shrink:0;
+}
+
 /* Music pill */
 .music-pill {
   top: calc(max(env(safe-area-inset-top,0px),4px) + 8px);
