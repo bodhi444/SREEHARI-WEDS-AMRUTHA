@@ -12,9 +12,17 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+let db = null;
+try {
+  // If the user's Firebase config is missing databaseURL, getDatabase might throw an error.
+  // We wrap this in try-catch so the rest of the website's JS (animations, swipe) still works!
+  db = getDatabase(app);
+} catch (e) {
+  console.error("Firebase DB Error:", e);
+}
 
 export async function submitRSVP(data) {
+  if (!db) throw new Error("Firebase Database not initialized (Missing databaseURL?)");
   const rsvpRef = ref(db, 'rsvps');
   await push(rsvpRef, {
     ...data,
@@ -23,6 +31,10 @@ export async function submitRSVP(data) {
 }
 
 export function listenForRSVPs(callback) {
+  if (!db) {
+    console.error("Firebase Database not initialized");
+    return;
+  }
   const rsvpRef = ref(db, 'rsvps');
   onValue(rsvpRef, (snapshot) => {
     const data = snapshot.val();
