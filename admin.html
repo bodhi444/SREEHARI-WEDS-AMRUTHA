@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSVP Admin Dashboard | Sreehari & Amrutha</title>
+  <style>
+    :root {
+      --maroon: #7B1E2B;
+      --gold: #C89B3C;
+      --bg: #F7F2EA;
+      --text: #2C1A10;
+    }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0; padding: 20px;
+    }
+    .container {
+      max-width: 800px; margin: 0 auto;
+    }
+    h1 {
+      color: var(--maroon); text-align: center;
+      margin-bottom: 30px;
+    }
+    .stats {
+      display: flex; gap: 20px; justify-content: center;
+      margin-bottom: 30px;
+    }
+    .stat-box {
+      background: white; padding: 20px; border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center; min-width: 120px;
+      border-top: 4px solid var(--gold);
+    }
+    .stat-val { font-size: 32px; font-weight: bold; color: var(--maroon); }
+    .stat-lbl { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-top: 5px; }
+    
+    table {
+      width: 100%; border-collapse: collapse;
+      background: white; border-radius: 8px; overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    th, td {
+      padding: 15px; text-align: left; border-bottom: 1px solid #eee;
+    }
+    th {
+      background: var(--maroon); color: white;
+      text-transform: uppercase; font-size: 13px; letter-spacing: 1px;
+    }
+    tr:last-child td { border-bottom: none; }
+    .tag {
+      padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold;
+    }
+    .tag.yes { background: #e6f4ea; color: #1e8e3e; }
+    .tag.no { background: #fce8e6; color: #d93025; }
+
+    #authScreen {
+      position: fixed; inset: 0; background: var(--bg);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 100;
+    }
+    #authScreen input {
+      padding: 12px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px;
+      margin-bottom: 10px; width: 200px; text-align: center;
+    }
+    #authScreen button {
+      padding: 12px 24px; background: var(--maroon); color: white;
+      border: none; border-radius: 4px; font-size: 16px; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Password Prompt -->
+  <div id="authScreen">
+    <h2 style="color:var(--maroon)">Admin Access</h2>
+    <input type="password" id="adminPwd" placeholder="Enter Password" />
+    <button id="loginBtn">Login</button>
+  </div>
+
+  <div class="container" id="dashboard" style="display:none">
+    <h1>RSVP Dashboard</h1>
+    
+    <div class="stats">
+      <div class="stat-box">
+        <div class="stat-val" id="statAttending">0</div>
+        <div class="stat-lbl">Attending</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="statGuests">0</div>
+        <div class="stat-lbl">Total Guests</div>
+      </div>
+      <div class="stat-box" style="border-top-color:#ccc">
+        <div class="stat-val" id="statDeclined" style="color:#666">0</div>
+        <div class="stat-lbl">Declined</div>
+      </div>
+    </div>
+
+    <table id="rsvpTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Guests</th>
+          <th>Date Submitted</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="4" style="text-align:center">Loading RSVPs...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

@@ -395,12 +395,15 @@ if(typeof lucide!=='undefined') lucide.createIcons();
 })();
 
 /* ════════════════════════════════════════
-   14. RSVP FORM
+   14. RSVP FORM (Firebase Integration)
 ════════════════════════════════════════ */
+import { submitRSVP } from './firebase-config.js';
+
 (function initRSVP() {
   const form = document.getElementById('rsvpForm');
   const guestCountGroup = document.getElementById('guestCountGroup');
   const guestCountInput = document.getElementById('guestCount');
+  const submitBtn = form?.querySelector('.rsvp-submit');
   if(!form) return;
 
   // Toggle guest count based on attendance
@@ -416,22 +419,40 @@ if(typeof lucide!=='undefined') lucide.createIcons();
     }
   });
 
-  // Handle submit to WhatsApp
-  form.addEventListener('submit', (e) => {
+  // Handle submit to Firebase
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = document.getElementById('guestName').value.trim();
     const isAttending = form.querySelector('input[name="attending"]:checked').value === 'yes';
-    const count = guestCountInput.value;
+    const count = isAttending ? guestCountInput.value : 0;
+    const origHTML = submitBtn.innerHTML;
 
-    let text = "";
-    if (isAttending) {
-      text = `Hi! This is *${name}*.\nI joyfully accept your invitation and will be attending the wedding!\nNumber of guests: *${count}*`;
-    } else {
-      text = `Hi! This is *${name}*.\nI regretfully won't be able to attend the wedding, but wishing you both a lifetime of happiness!`;
+    try {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i data-lucide="loader" width="16" height="16" class="spin-icon"></i> Sending...';
+      if(typeof lucide!=='undefined') lucide.createIcons();
+
+      await submitRSVP({
+        name: name,
+        attending: isAttending,
+        guests: Number(count)
+      });
+
+      // Show success message
+      form.innerHTML = `
+        <div style="text-align:center; padding: 20px 0; color: var(--gold);">
+          <i data-lucide="check-circle-2" width="48" height="48" style="margin-bottom:12px"></i>
+          <h3 style="font-family:var(--font-script); font-size:24px; color:var(--maroon)">Thank You!</h3>
+          <p style="font-size:14px; color:var(--text-body); margin-top:8px;">Your RSVP has been received.</p>
+        </div>
+      `;
+      if(typeof lucide!=='undefined') lucide.createIcons();
+
+    } catch (err) {
+      console.error(err);
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = origHTML;
+      alert("Oops! Something went wrong saving your RSVP. Please try again.");
     }
-
-    const waNum = "919074707032";
-    const waUrl = `https://wa.me/${waNum}?text=${encodeURIComponent(text)}`;
-    window.open(waUrl, '_blank');
   });
 })();
