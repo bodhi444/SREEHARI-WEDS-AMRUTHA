@@ -4,6 +4,7 @@ import { getDatabase, ref, push, serverTimestamp, onValue } from "https://www.gs
 const firebaseConfig = {
   apiKey: "AIzaSyARQyXh8SuC2Eem2JtXGtQ0vgph6_igePY",
   authDomain: "sreehari-wedding.firebaseapp.com",
+  databaseURL: "https://sreehari-wedding-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "sreehari-wedding",
   storageBucket: "sreehari-wedding.firebasestorage.app",
   messagingSenderId: "850359961428",
