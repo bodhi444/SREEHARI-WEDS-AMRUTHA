@@ -24,10 +24,18 @@ try {
 export async function submitRSVP(data) {
   if (!db) throw new Error("Firebase Database not initialized (Missing databaseURL?)");
   const rsvpRef = ref(db, 'rsvps');
-  await push(rsvpRef, {
+  
+  // Wrap push in a timeout so it doesn't hang forever if the connection is stuck
+  const pushPromise = push(rsvpRef, {
     ...data,
     timestamp: serverTimestamp()
   });
+
+  const timeoutPromise = new Promise((_, reject) => {
+    setTimeout(() => reject(new Error("Database connection timed out. Check if your Firebase Database URL is correct and exists!")), 5000);
+  });
+
+  await Promise.race([pushPromise, timeoutPromise]);
 }
 
 export function listenForRSVPs(callback) {
